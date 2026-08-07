@@ -1,0 +1,33 @@
+sample_id,body_condition,coat_quality,eye_condition,wound_presence,mobility,appetite
+VAL-001,3.0,Smooth,Clear,None,Normal,Good
+VAL-002,3.0,Smooth,Clear,None,Normal,Good
+VAL-003,3.2,Smooth,Clear,None,Normal,Good
+VAL-004,2.8,Smooth,Slight discharge,None,Normal,Good
+VAL-005,3.0,Slightly rough,Clear,None,Normal,Good
+VAL-006,3.1,Smooth,Clear,Minor,Normal,Good
+VAL-007,2.9,Smooth,Clear,None,Slight limp,Good
+VAL-008,3.0,Smooth,Clear,None,Normal,Fair
+VAL-009,2.2,Slightly rough,Clear,None,Normal,Good
+VAL-010,3.8,Smooth,Slight discharge,None,Normal,Good
+VAL-011,2.4,Slightly rough,Slight discharge,None,Normal,Fair
+VAL-012,3.7,Slightly rough,Clear,Minor,Normal,Good
+VAL-013,2.3,Smooth,Clear,Minor,Slight limp,Good
+VAL-014,3.6,Slightly rough,Clear,None,Slight limp,Fair
+VAL-015,2.1,Rough,Clear,None,Normal,Good
+VAL-016,3.9,Smooth,Cloudy,None,Normal,Good
+VAL-017,1.8,Rough,Clear,None,Normal,Fair
+VAL-018,4.2,Rough,Slight discharge,None,Normal,Fair
+VAL-019,2.0,Rough,Cloudy,None,Normal,Fair
+VAL-020,3.0,Rough,Cloudy,None,Normal,Good
+VAL-021,2.8,Rough,Clear,Moderate,Normal,Good
+VAL-022,3.1,Slightly rough,Clear,Moderate,Lame,Good
+VAL-023,1.9,Slightly rough,Cloudy,Minor,Lame,Fair
+VAL-024,4.1,Rough,Clear,Minor,Slight limp,Poor
+VAL-025,1.2,Rough,Cloudy,Moderate,Lame,Poor
+VAL-026,4.8,Severe lesions,Cloudy,Moderate,Lame,Poor
+VAL-027,3.0,Severe lesions,Clear,None,Normal,Good
+VAL-028,3.0,Smooth,Severe infection,None,Normal,Good
+VAL-029,3.0,Smooth,Clear,Severe,Normal,Good
+VAL-030,3.0,Smooth,Clear,None,Unable to stand,Good
+VAL-031,1.1,Rough,Cloudy,Severe,Lame,None
+VAL-032,4.9,Severe lesions,Severe infection,Severe,Unable to stand,None

@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: elhgs_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: elhgs_db
+      POSTGRES_USER: elhgs_user
+      POSTGRES_PASSWORD: elhgs_secure_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U elhgs_user -d elhgs_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: elhgs_backend
+    restart: always
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: elhgs_db
+      POSTGRES_USER: elhgs_user
+      POSTGRES_PASSWORD: elhgs_secure_password
+      DEMO_MODE: "true"
+      SECRET_KEY: "production-secret-key-change-in-prod"
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: elhgs_frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

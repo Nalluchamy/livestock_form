@@ -1,0 +1,17 @@
+{
+  "short_name": "ELHGS",
+  "name": "Explainable Livestock Health Grading System",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0F172A",
+  "background_color": "#F8FAFC",
+  "orientation": "portrait"
+}
