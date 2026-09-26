@@ -8,7 +8,22 @@ def generate_explanation(
     reasons: Dict[str, str]
 ) -> List[str]:
     """
-    Translates the fired rules and sub-grades into a human-readable list of reasons.
+    Translates fired rules, component sub-grades, and clinical thresholds into an explainable audit log.
+
+    Precedence Logic:
+    - Critical Disqualification (Grade D): When an individual life-safety or disqualifying defect
+      is detected (e.g. severe infection or deep rotting lesion), all secondary passing criteria
+      are suppressed from the primary summary to ensure the inspector focuses immediately on the clinical hazard.
+    - Tiered Explanations (Grades A/B/C): Formats individual criterion outcomes with explicit 'Passed' or
+      'Warning' designations, attributing the final grade to specific visual factors.
+
+    Args:
+        final_grade: Overarching grade assigned by the rule engine.
+        sub_grades: Dictionary mapping attribute keys to individual component grades.
+        reasons: Dictionary mapping attribute keys to deterministic diagnostic statements.
+
+    Returns:
+        Ordered list of human-readable explanation strings suitable for UI display and audit logging.
     """
     explanation_lines = []
 

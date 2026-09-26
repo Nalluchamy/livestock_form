@@ -25,8 +25,33 @@ class ProduceGradingService:
         create_persistent_review_on_disagreement: bool = True
     ) -> Dict[str, Any]:
         """
-        Grades a produce sample from either image bytes, manual attributes, or both.
-        If both are provided, manual attributes override extracted image features.
+        Orchestrates produce grading (tomatoes) from image bytes, manual attributes, or both.
+
+        Pipeline & Precedence Rules:
+        1. Optical Extraction: If raw image bytes are provided, extracts 10 objective morphological
+           and colorimetric attributes (redness ratio, defect %, lesion detection, Laplacian focus).
+        2. Attribute Precedence: Explicitly supplied manual attributes override computer-vision
+           extracted metrics, allowing human graders or laboratory instruments to refine measurements.
+        3. Deterministic Rubric Evaluation: Executes the USDA/UNECE rule hierarchy (Optical Quality Gate ->
+           Disqualifying Defect Check -> Surface Defect Tolerance -> Chromaticity/Maturity -> Symmetry).
+        4. Disagreement Escalation: If a human grade is supplied and differs from the system provisional
+           grade, persists an immutable DisagreementReview record in the database for senior adjudication.
+
+        Scientific-Integrity & Failure Safeguards:
+        - Persistent review creation failure (e.g., transient DB lock) is caught and handled gracefully;
+          the grading pipeline continues and returns the evaluation payload without throwing 500 errors.
+        - Human grades are never overwritten, modified, or silently replaced by AI predictions.
+
+        Returns:
+            Dictionary containing:
+            - provisional_grade: Assigned grade ('A', 'B', 'C', or 'REJECTED_IMAGE')
+            - confidence: Confidence percentage (0.0 to 100.0)
+            - image_quality_passed: Boolean indicating optical gate status
+            - triggered_rules: List of rule IDs that fired during evaluation
+            - reasons: Plain-language diagnostic explanations for the assigned grade
+            - counterfactuals: Specific threshold adjustments needed to improve the grade
+            - persistent_review_id: UUID string if escalated to senior review, else None
+            - extracted_features: Raw computer-vision attributes before merging
         """
         attributes = attributes or {}
         extracted_features: Dict[str, Any] = {}

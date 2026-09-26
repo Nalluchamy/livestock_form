@@ -91,11 +91,24 @@ class AnnotationRepository:
         notes: Optional[str] = None
     ) -> ExpertAnnotation:
         """
-        Submits an expert's grade with double-blind isolation logic:
-        - If Grader 1 slot is free, assigns Grader 1.
-        - If Grader 1 is current grader, updates Grader 1.
-        - If Grader 2 slot is free or current grader is Grader 2, assigns Grader 2.
-        - Checks for agreement: identical grades -> CONSENSUS_REACHED; different -> DISAGREEMENT.
+        Submits an expert's grade under the Double-Blind State Machine protocol.
+
+        Double-Blind State Transition Contract:
+        1. Slot 1 Assignment: When sample is in PENDING state (expert_grader_1_id is None),
+           assigns grader_id to Grader 1, records timestamp, and transitions state to PARTIALLY_ANNOTATED.
+        2. Slot 1 Edit: If the submitting grader is the original Grader 1, allows in-place updates.
+        3. Slot 2 Assignment: When expert_grader_1_id is already filled by another inspector,
+           assigns grader_id to Grader 2 without revealing Grader 1's grade or clinical notes.
+        4. Consensus Determination:
+           - Concordant (grade_1 == grade_2): Transitions status to CONSENSUS_REACHED, sets final_consensus_grade,
+             and marks consensus_reached_at timestamp.
+           - Discordant (grade_1 != grade_2): Transitions status to DISAGREEMENT, unlocking the record in the
+             Senior Reviewer adjudication queue for binding resolution.
+
+        Safety & Integrity Invariants:
+        - Rejects submissions for samples flagged as REJECTED or already finalized as CONSENSUS_REACHED.
+        - Validates grade format against allowed rubric symbols (A, B, C, D).
+        - Timestamps and grader IDs are immutable once consensus is finalized.
         """
         record = self.get_by_sample_id(sample_id)
         if not record:

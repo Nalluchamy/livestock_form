@@ -5,7 +5,7 @@
 **Milestone:** Stage 2 / Review 2 (70% Development Milestone)  
 **Primary Demonstration Domain:** Fresh-Market Produce Quality Grading (Tomatoes — Grades A, B, and C)  
 **Secondary Domain:** Explainable Livestock Health & Condition Assessment (Body Condition Scoring 1–5 & Clinical Safety)  
-**System Verification:** 176 / 176 Backend Unit Tests Passing (100%), Frontend Production Build Clean (0 Errors)  
+**System Verification:** 187 / 187 Backend Automated Tests Passing (100%), Frontend Production Build Clean (0 Errors)  
 
 ---
 
@@ -268,59 +268,61 @@ npm run dev
 
 The repository includes a comprehensive, multi-layer automated test suite spanning unit tests, CV feature extraction, deterministic rubrics, RBAC authorization, and REST API endpoints:
 
-### Running the Backend Test Suite
+### 11.1 Running the Backend Test Suite
 ```powershell
 .\.venv\Scripts\python -m pytest backend\tests
 ```
 
-**Verified Test Execution Results (Executed September 2026):**
+**Verified Test Execution Results (September 2026):**
 ```
 ============================= test session starts =============================
 platform win32 -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0
-collected 176 items
+collected 187 items
 
 backend\tests\test_agreement_metrics.py .....                            [  2%]
 backend\tests\test_annotation_schema.py .....                            [  5%]
 backend\tests\test_audit_logging.py ....                                 [  7%]
-backend\tests\test_auth_api.py ............                              [ 14%]
-backend\tests\test_clinical_safety_escalation.py .....                   [ 17%]
-backend\tests\test_confidence.py ....                                    [ 19%]
-backend\tests\test_database_reliability.py .....                         [ 22%]
-backend\tests\test_dataset_splitting.py ....                             [ 25%]
-backend\tests\test_dataset_upload_api.py .....                           [ 27%]
-backend\tests\test_dataset_versioning_manifest.py ...                    [ 29%]
-backend\tests\test_deployment_smoke.py .....                             [ 32%]
-backend\tests\test_disagreements_api.py .                                [ 32%]
-backend\tests\test_disaster_recovery.py ...                              [ 34%]
-backend\tests\test_experiment_framework.py ...                           [ 36%]
-backend\tests\test_experiment_persistence.py ..                          [ 37%]
-backend\tests\test_expert_annotation_workflow.py ....                    [ 39%]
-backend\tests\test_explanation.py ..                                     [ 40%]
-backend\tests\test_grading_api.py .....                                  [ 43%]
-backend\tests\test_grading_service.py .....                              [ 46%]
-backend\tests\test_health_api.py .                                       [ 47%]
-backend\tests\test_image_sanitization.py .........                       [ 52%]
-backend\tests\test_metrics_api.py .                                      [ 52%]
-backend\tests\test_ml_prediction.py ..                                   [ 53%]
-backend\tests\test_model_loading.py .                                    [ 54%]
-backend\tests\test_phase11_api.py ....                                   [ 56%]
-backend\tests\test_produce_experiments_and_api.py ......                 [ 60%]
-backend\tests\test_produce_ingestion_and_cv.py .....                     [ 63%]
-backend\tests\test_produce_rubric_and_rules.py ........                  [ 67%]
-backend\tests\test_rbac_permissions.py ..............                    [ 75%]
-backend\tests\test_real_assessment_e2e.py ...                            [ 77%]
-backend\tests\test_real_dataset_runner.py ...                            [ 78%]
-backend\tests\test_real_produce_validation.py ...............            [ 87%]
-backend\tests\test_review_persistence.py ....                            [ 89%]
+backend\tests\test_auth_api.py ............                              [ 13%]
+backend\tests\test_clinical_safety_escalation.py .....                   [ 16%]
+backend\tests\test_confidence.py ....                                    [ 18%]
+backend\tests\test_database_reliability.py .....                         [ 21%]
+backend\tests\test_dataset_splitting.py ....                             [ 23%]
+backend\tests\test_dataset_upload_api.py .....                           [ 26%]
+backend\tests\test_dataset_versioning_manifest.py ...                    [ 27%]
+backend\tests\test_deployment_smoke.py .....                             [ 30%]
+backend\tests\test_disagreements_api.py .                                [ 31%]
+backend\tests\test_disaster_recovery.py ...                              [ 32%]
+backend\tests\test_error_handling_and_boundaries.py ...........          [ 38%]
+backend\tests\test_experiment_framework.py ...                           [ 40%]
+backend\tests\test_experiment_persistence.py ..                          [ 41%]
+backend\tests\test_expert_annotation_workflow.py ....                    [ 43%]
+backend\tests\test_explanation.py ..                                     [ 44%]
+backend\tests\test_grading_api.py .....                                  [ 47%]
+backend\tests\test_grading_service.py .....                              [ 49%]
+backend\tests\test_health_api.py .                                       [ 50%]
+backend\tests\test_image_sanitization.py .........                       [ 55%]
+backend\tests\test_metrics_api.py .                                      [ 55%]
+backend\tests\test_ml_prediction.py ..                                   [ 56%]
+backend\tests\test_model_loading.py .                                    [ 57%]
+backend\tests\test_phase11_api.py ....                                   [ 59%]
+backend\tests\test_produce_experiments_and_api.py ......                 [ 62%]
+backend\tests\test_produce_ingestion_and_cv.py .....                     [ 65%]
+backend\tests\test_produce_rubric_and_rules.py ........                  [ 69%]
+backend\tests\test_rbac_permissions.py ..............                    [ 77%]
+backend\tests\test_real_assessment_e2e.py ...                            [ 78%]
+backend\tests\test_real_dataset_runner.py ...                            [ 80%]
+backend\tests\test_real_produce_validation.py ...............            [ 88%]
+backend\tests\test_review_persistence.py ....                            [ 90%]
 backend\tests\test_rule_engine.py ...                                    [ 91%]
 backend\tests\test_secure_image_storage.py .....                         [ 94%]
-backend\tests\test_sync_api.py .                                         [ 94%]
+backend\tests\test_sync_api.py .                                         [ 95%]
 backend\tests\test_synthetic_produce_dataset.py .........                [100%]
 
-===================== 176 passed, 152 warnings in 28.09s ======================
+===================== 187 passed, 154 warnings in 33.40s ======================
 ```
+> For test directory layout, test category classifications, fixture isolation, and failure interpretation, consult [`docs/UNIT_TESTING.md`](docs/UNIT_TESTING.md).
 
-### Running the Frontend Production Build
+### 11.2 Running the Frontend Production Build
 ```powershell
 cd frontend
 npm run build
@@ -332,18 +334,139 @@ npm run build
 
 vite v5.4.21 building for production...
 transforming...
-✓ 1725 modules transformed.
+✓ 1726 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.90 kB │ gzip:   0.50 kB
-dist/assets/index-BFUGxZ6t.css   39.55 kB │ gzip:   7.11 kB
-dist/assets/index-DNyc4TS1.js   566.74 kB │ gzip: 160.75 kB
-✓ built in 17.98s
+dist/assets/index--XJRffCO.css   40.19 kB │ gzip:   7.22 kB
+dist/assets/index-N0Qzrov4.js   569.62 kB │ gzip: 161.62 kB
+✓ built in 2.51s
 ```
 
 ---
 
-## 12. Current Development Status
+## 12. Error Handling & Recovery Protocols
+
+EQGS employs a defense-in-depth error-handling architecture across both frontend rendering and backend API operations to prevent unhandled crashes, protect user data, and enforce zero-information-disclosure security policies:
+
+### 12.1 Multi-Level Frontend React Error Boundaries
+- **Global Application Boundary (`App.tsx`):** Wraps all application providers (`QueryClientProvider`, `AuthProvider`, `RouterProvider`) to intercept unhandled top-level React lifecycle errors, offering full-screen recovery actions (Try Again, Reload, Return to Dashboard).
+- **Route & Page Boundary (`RootLayout.tsx`):** Wraps `<Outlet />` to isolate rendering faults within specific pages (e.g. complex metrics charts or photo viewers). The application header, sidebar, navigation, and offline status remain fully operational.
+- **Credential & Token Redaction:** Automatically scrubs sensitive authentication tokens and parameters from error strings before display.
+
+### 12.2 Backend Exception Handling & Sanitization
+- **Centralized Exception Handlers:** Intercepts `APIException`, `RequestValidationError` (Pydantic 422), `SQLAlchemyError` (sanitized 500), and unhandled Python `Exception` (sanitized 500).
+- **Zero Information Leakage:** Database connection strings, SQL queries, table names, and Python tracebacks are strictly logged on the server and never exposed in client HTTP responses.
+
+### 12.3 Domain Fault Safeguards
+1. **Corrupted Images:** Gracefully rejected with HTTP 400 Bad Request before disk writes.
+2. **Unsupported File Formats:** Enforces MIME validation (JPEG, PNG, WebP only).
+3. **Cryptographic & Perceptual Duplicates:** Dual-hash gates (SHA-256 and 64-bit dHash with $d_H \le 4$) return HTTP 409 Conflict.
+4. **Optical Quality Gate:** Rejects blurred or underexposed photos with `image_quality_passed: false` and `confidence: 0.0%`, demanding manual physical inspection.
+5. **Controlled Trial Sample Size Guards:** Blocks experimental trial execution with `PENDING_REAL_DATA` when consensus samples $< 10$, preventing division-by-zero crashes.
+
+> For detailed error-handling flows, exception schemas, and recovery protocols, consult [`docs/ERROR_BOUNDARIES.md`](docs/ERROR_BOUNDARIES.md).
+
+---
+
+## 13. REST API Reference & Endpoints
+
+FastAPI exposes versioned RESTful endpoints (`/api/v1`) providing structured JSON responses and multipart file ingestion:
+
+| Route Path | Method | Purpose | Required Role |
+| :--- | :--- | :--- | :--- |
+| `/api/v1/auth/register` | `POST` | User account registration | Public |
+| `/api/v1/auth/login` | `POST` | User authentication & token issuance | Public |
+| `/api/v1/auth/me` | `GET` | Authenticated user profile | Any Authenticated |
+| `/api/v1/produce/grade` | `POST` | Deterministic produce grading & explainability | Optional (Demo Mode) |
+| `/api/v1/produce/upload-and-grade`| `POST` | Image upload, attribute extraction & grading | Optional |
+| `/api/v1/produce/upload-real` | `POST` | Genuine tomato photo ingestion & deduplication | `EXPERT_GRADER`+ |
+| `/api/v1/produce/upload-real-batch`| `POST`| Batch upload of genuine tomato photographs | `EXPERT_GRADER`+ |
+| `/api/v1/produce/real-samples` | `GET` | List real produce samples with double-blind masking | `EXPERT_GRADER`+ |
+| `/api/v1/produce/annotate-real`| `POST` | Submit double-blind expert annotation | `EXPERT_GRADER`+ |
+| `/api/v1/produce/adjudicate-real`| `POST`| Senior reviewer dispute adjudication | `SENIOR_REVIEWER`+ |
+| `/api/v1/produce/real/experiment`| `POST`| Execute real produce controlled trial | `DATA_SCIENTIST`+ |
+| `/api/v1/produce/synthetic-status`| `GET`| Inspect quarantined synthetic dataset status | Public |
+| `/api/v1/reviews` | `GET` | List persistent disagreement reviews | `EXPERT_GRADER`+ |
+| `/api/v1/reviews/{id}/resolve` | `POST` | Authoritative senior dispute resolution | `SENIOR_REVIEWER`+ |
+| `/api/v1/dataset/upload` | `POST` | Ingest livestock health photograph | `EXPERT_GRADER`+ |
+| `/api/v1/dataset/provenance` | `GET` | Retrieve cryptographic ingestion audit log | `DATA_SCIENTIST`+ |
+| `/api/v1/health` | `GET` | Liveness & database connectivity probe | Public |
+| `/api/v1/health/detailed` | `GET` | Operational monitoring & backup audit | Public |
+
+> For request/response schemas, error codes, and curl examples, consult [`docs/API_REFERENCE.md`](docs/API_REFERENCE.md).
+
+---
+
+## 14. Database Architecture & Schema
+
+The persistent database consists of **11 tables** managed through SQLAlchemy 2.0 and Alembic migrations:
+
+```
+users (Accounts & Roles)
+  └── refresh_tokens (Rotated Session Tokens)
+  └── audit_logs (Tamper-Evident Action Audit)
+
+dim_samples (Livestock / Produce Entities)
+  └── fact_grading_events (Grading Sessions)
+        ├── dim_graders (Inspector Demographics)
+        ├── dim_images (Image Metadata & Hashes)
+        ├── dim_criteria (Scoring Rubrics)
+        └── disagreement_reviews (Dispute Review Lifecycle)
+
+expert_annotations (Double-Blind Annotation State Machine)
+experiment_results (Controlled Trial Statistical Storage)
+```
+
+### Table Summary
+
+| Table Name | Category | Primary Key | Key Relationships / Constraints |
+| :--- | :--- | :--- | :--- |
+| **`users`** | Security | `id` (UUID) | Unique `username`, `email`; role index; failed login lockout |
+| **`refresh_tokens`** | Security | `id` (UUID) | Foreign Key -> `users.id` (CASCADE); unique `token_hash` |
+| **`audit_logs`** | Compliance | `id` (UUID) | Indexed `action`, `resource_type`; JSON structured details |
+| **`dim_samples`** | Star-Schema | `id` (UUID) | `species`, `breed`, `age_months`, `sex`, `weight_kg` |
+| **`dim_graders`** | Star-Schema | `id` (UUID) | `grader_type`, `experience_years`, `specialization` |
+| **`dim_images`** | Star-Schema | `id` (UUID) | Unique `sha256_hash`, `file_path`, `lighting_lux`, `is_sanitized` |
+| **`dim_criteria`** | Star-Schema | `id` (UUID) | `criterion_name`, `criterion_category`, `description` |
+| **`fact_grading_events`** | Star-Schema | `id` (UUID) | FKs to `dim_samples`, `dim_graders`, `dim_images`; `system_grade` |
+| **`disagreement_reviews`**| Workflow | `id` (UUID) | FK to `fact_grading_events.id`; immutable original grades |
+| **`expert_annotations`** | Workflow | `id` (UUID) | Unique `sample_id`; isolated Grader 1/2 slots; consensus grade |
+| **`experiment_results`** | Analytics | `id` (UUID) | `experiment_name`, `dataset_version`, Cohen's kappa, `evaluation_type` |
+
+> For comprehensive column definitions, foreign keys, lifecycle state transitions, and a full Mermaid ER diagram, consult [`docs/DATABASE_SCHEMA.md`](docs/DATABASE_SCHEMA.md).
+
+---
+
+## 15. Developer Documentation & Guidelines
+
+### 15.1 Code Standards & Type Safety
+- **Python Backend:** Strict PEP 8 styling, explicit type hints (`typing.Optional`, `typing.Dict`, `typing.List`), Pydantic models for API request/response boundary validation, and SQLAlchemy 2.0 `Mapped` attributes.
+- **Frontend PWA:** TypeScript strict mode (`tsconfig.json`), ESLint checks, functional React components with React Hooks, and Tailwind CSS utility styling.
+
+### 15.2 Database Migration Workflows
+When modifying SQLAlchemy models in `backend/models/`:
+```powershell
+# Generate migration script
+alembic -c backend/alembic.ini revision --autogenerate -m "describe_schema_change"
+
+# Apply migrations
+alembic -c backend/alembic.ini upgrade head
+```
+
+### 15.3 Running Linters & Tests
+```powershell
+# Run full backend test suite (187 tests)
+.\.venv\Scripts\python -m pytest backend\tests
+
+# Run frontend build check
+cd frontend
+npm run build
+```
+
+---
+
+## 16. Current Development Status
 
 **Milestone:** Stage 2 / Review 2 (70% Development Milestone)  
 > [!NOTE]
@@ -365,13 +488,13 @@ dist/assets/index-DNyc4TS1.js   566.74 kB │ gzip: 160.75 kB
 
 ---
 
-## 13. Pending Real-World Validation
+## 17. Pending Real-World Validation
 
 In strict adherence to academic and engineering integrity, the following activities remain **PENDING** until physical agricultural field evidence is collected:
 
 | Activity | Current State | System Status Code | Required Field Action |
 | :--- | :--- | :--- | :--- |
-| **Genuine Photograph Collection** | 0 / 10 Pilot, 0 / 30 Target | `PENDING_REAL_DATA` | Photograph 10 real tomatoes using [`docs/REAL_TOMATO_COLLECTION_CHECKLIST.md`](file:///d:/livestock_farm/docs/REAL_TOMATO_COLLECTION_CHECKLIST.md) |
+| **Genuine Photograph Collection** | 0 / 10 Pilot, 0 / 30 Target | `PENDING_REAL_DATA` | Photograph 10 real tomatoes using [`docs/REAL_TOMATO_COLLECTION_CHECKLIST.md`](docs/REAL_TOMATO_COLLECTION_CHECKLIST.md) |
 | **Independent Expert Annotations** | 0 Annotations | `PENDING_EXPERT_ANNOTATION` | Convene 2 independent graders to annotate specimens |
 | **Consensus Reference Grades** | 0 Established | `PENDING_REAL_DATA` | Automatic clearance of matching grades ($A=A$) |
 | **Controlled Trial Measurements** | 0 Trials Evaluated | `PENDING_REAL_EXPERIMENT` | Execute Condition A vs. Condition B on $\ge 10$ consensus samples |
@@ -380,7 +503,7 @@ In strict adherence to academic and engineering integrity, the following activit
 
 ---
 
-## 14. Project Directory Structure
+## 18. Project Directory Structure
 
 ```
 d:/livestock_farm/
@@ -388,43 +511,23 @@ d:/livestock_farm/
 │   ├── alembic/                      # Database migration scripts (Revisions 0001–0004)
 │   ├── api/                          # FastAPI route handlers
 │   │   ├── health.py                 # Health and liveness probe
-│   │   └── v1/                       # API v1 versioned endpoints
-│   │       ├── admin.py              # System administration & user management
-│   │       ├── annotations.py        # Expert annotation endpoints
-│   │       ├── auth.py               # JWT login, refresh, logout
-│   │       ├── dataset.py            # Dataset querying & manifest inspection
-│   │       ├── dataset_upload.py     # Livestock image ingestion
-│   │       ├── disagreements.py      # Disagreement review queue
-│   │       ├── experiments.py        # Controlled trial execution & persistence
-│   │       ├── grading.py            # Livestock BCS & mobility grading
-│   │       ├── metrics.py            # Dashboard metrics aggregation
-│   │       ├── produce_grading.py    # Produce grading, batch upload, double-blind APIs
-│   │       └── sync.py               # PWA offline synchronization endpoints
-│   ├── core/                         # Core configuration, security, and RBAC dependencies
+│   │   └── v1/                       # API v1 versioned endpoints (12 routers)
+│   ├── core/                         # Configuration, logging, and security
 │   ├── database/                     # SQLAlchemy engine, session management, and Base
 │   ├── evaluation/                   # Ingestion, trial runner, deduplication pipelines
-│   │   ├── produce_experiment_runner.py  # Before-and-after trial runner
-│   │   ├── produce_ingestion.py      # 10-attribute OpenCV feature extraction
-│   │   ├── real_produce_pipeline.py  # Genuine produce pipeline, double-blind logic
-│   │   └── synthetic_produce_pipeline.py # Quarantined synthetic development pipeline
 │   ├── grading/                      # Deterministic rule engine and rubrics
-│   ├── models/                       # SQLAlchemy Star-Schema ORM entities
+│   ├── models/                       # SQLAlchemy Star-Schema ORM entities (11 tables)
 │   ├── repositories/                 # Data-access repository layer
 │   ├── schemas/                      # Pydantic request/response schemas
 │   ├── services/                     # Business logic and domain services
-│   └── tests/                        # 176 automated pytest tests
+│   └── tests/                        # 187 automated pytest tests (38 test suites)
 ├── frontend/
 │   ├── public/                       # PWA manifest, service workers, static icons
 │   └── src/
-│       ├── components/               # Reusable UI components, header, navigation
+│       ├── components/               # UI components, ErrorBoundary, AppHeader
 │       ├── context/                  # AuthContext and state providers
-│       ├── pages/                    # Application pages
-│       │   ├── ProduceGrading.tsx    # Primary Stage 2 produce grading (5 tabs)
-│       │   ├── MetricsDashboard.tsx  # Stage 2 metrics dashboard & progress
-│       │   ├── ExpertAnnotation.tsx  # Double-blind annotation management
-│       │   ├── DisagreementReview.tsx# Persistent dispute review queue
-│       │   ├── EthicsLimitations.tsx # Ethical disclosure & failure analysis
-│       │   └── Home.tsx              # Application landing page
+│       ├── layouts/                  # RootLayout with ErrorBoundary
+│       ├── pages/                    # ProduceGrading, MetricsDashboard, ExpertAnnotation
 │       ├── routes/                   # Client-side React routing
 │       ├── services/                 # Frontend API client connectors
 │       └── utils/                    # IndexedDB local database and helpers
@@ -433,7 +536,11 @@ d:/livestock_farm/
 │   │   ├── real/                     # Genuine tomato storage (raw, processed, metadata.csv)
 │   │   └── synthetic/                # 6 physical synthetic images & 320-prompt manifest
 │   └── real/                         # Secondary livestock image storage
-├── docs/                             # Technical protocols, rubrics, error analysis
+├── docs/                             # Technical documentation suite
+│   ├── API_REFERENCE.md              # Detailed REST API specification
+│   ├── DATABASE_SCHEMA.md            # 11-table schema & Mermaid ER diagram
+│   ├── ERROR_BOUNDARIES.md           # Error boundaries & fault recovery protocols
+│   ├── UNIT_TESTING.md               # Unit testing architecture & guidelines
 │   ├── ERROR_ANALYSIS.md             # 4 documented edge cases & mitigations
 │   ├── REAL_TOMATO_COLLECTION_CHECKLIST.md # Smartphone field collection guide
 │   ├── STAGE_2_DEMONSTRATION_SCRIPT.md     # 18-minute presentation script & defense FAQ
@@ -441,12 +548,13 @@ d:/livestock_farm/
 ├── scripts/                          # Ingestion, synthetic verification, DB backup scripts
 ├── docker-compose.yml                # Production multi-container orchestration
 ├── README.md                         # This repository overview
-└── REVIEW_2_GITHUB_READINESS_REPORT.md # Comprehensive Review 2 readiness audit
+├── REVIEW_2_GITHUB_READINESS_REPORT.md # Comprehensive Review 2 readiness audit
+└── PHASE_23_QBEE_FEEDBACK_RESOLUTION.md# Qbee AI Review 2 feedback resolution report
 ```
 
 ---
 
-## 15. Review 2 Demonstration Instructions
+## 19. Review 2 Demonstration Instructions
 
 Evaluators can reproduce and inspect the full prototype following this guided sequence:
 
@@ -478,7 +586,7 @@ Confirm that the system refuses to issue an unverified high-confidence grade.
 
 ---
 
-## 16. Ethical Considerations & Limitations
+## 20. Ethical Considerations & Limitations
 
 1. **Non-Surveillance Commitment**: The double-blind annotation interface and stakeholder evaluation tools do **not** record worker speed pacing, do not rank workers against each other, and do not capture facial biometrics.
 2. **Monocular Single-View Limitation**: Single-photo captures cannot inspect the hidden hemisphere or internal spongy tissue of a tomato; internal decay requires dual-angle photography or firmness physical inspection.

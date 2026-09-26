@@ -22,8 +22,26 @@ def evaluate_produce_sample(
     human_grade: Optional[str] = None
 ) -> Dict[str, Any]:
     """
-    Evaluates a produce sample deterministically across all rubric criteria.
-    Returns comprehensive explainability payload.
+    Evaluates a produce sample deterministically across the USDA/UNECE rubric hierarchy.
+
+    Evaluation Hierarchy & Priority Order:
+    1. Tier 0 - Optical Quality Gate: Validates focus (Laplacian variance >= 100), lighting
+       (40 <= lux <= 245), and surface occlusion (<= 30%). Rejects ungradable captures immediately.
+    2. Tier 1 - Disqualifying Critical Defects: Checks for blossom end rot lesions, growth cracks,
+       active decay, or deep punctures. If present, fruit is assigned Grade C (Cull) immediately.
+    3. Tier 2 - Epidermal Defect Area: Evaluates surface defect surface area:
+       - <= 5.0% -> Grade A eligible
+       - <= 15.0% -> Grade B eligible
+       - > 15.0% -> Grade C (Commercial Cull)
+    4. Tier 3 - Ripeness & Color Uniformity: Evaluates USDA ripeness stage and color variance.
+       Immature green or mottled fruit fails Grade A/B requirements.
+    5. Tier 4 - Mechanical Damage & Bruising: Evaluates structural integrity (None -> A, Minor/Mod -> B, Severe -> C).
+    6. Tier 5 - Geometric Symmetry: Evaluates circularity and aspect ratio against roundness bounds.
+    7. Tier 6 - Borderline Review Triggering: Inspects defect boundaries [4.0%, 6.0%] and [14.0%, 16.0%].
+       Flags borderline cases for human oversight while generating counterfactual improvement paths.
+
+    Returns:
+        Deterministic explainability payload with provisional grade, reasons, rules, and counterfactuals.
     """
     critical_defects = critical_defects or []
     triggered_rules: List[str] = []

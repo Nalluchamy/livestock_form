@@ -575,9 +575,21 @@ def run_real_produce_validation_experiment(
     experiment_name: str = "EXP_REAL_PRODUCE_STAGE2"
 ) -> Dict[str, Any]:
     """
-    Connects genuine produce dataset to evaluation runner under evaluation_type='real_produce_validation'.
-    Enforces strict isolation: checks dataset_type == REAL_PRODUCE and is_synthetic == False.
-    If genuine consensus-annotated samples < 10, returns status: PENDING_REAL_DATA.
+    Connects genuine produce dataset to evaluation runner under PostgreSQL evaluation_type='real_produce_validation'.
+
+    Scientific-Integrity & Guard Conditions:
+    1. Dataset Segregation: Strictly filters for dataset_type == 'REAL_PRODUCE' and is_synthetic == False.
+       Under no circumstances are synthetic images from dataset/produce/synthetic substituted.
+    2. Minimum Sample Size Guard: Requires at least N=10 genuine samples with verified consensus
+       annotations (Grader 1 + Grader 2 concordant or senior resolved). If consensus < 10, halts
+       immediately with PENDING_REAL_DATA, preventing deceptive zero-sample benchmarks.
+    3. Trial Record Separation: Verifies authentic controlled before-and-after trial records.
+       Expert reference annotations are strictly quarantined from completed experimental trial sessions.
+    4. Division-by-Zero Protection: All agreement and dispute formulas guard against N=0 denominators,
+       returning transparent PENDING indicators.
+
+    Returns:
+        Structured evaluation payload or transparent PENDING_REAL_DATA / PENDING_REAL_EXPERIMENT report.
     """
     status_info = get_real_produce_dataset_status(db=db)
     

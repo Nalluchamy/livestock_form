@@ -47,8 +47,25 @@ def compute_image_hash(image_bytes: bytes) -> str:
 def compute_perceptual_hash(image_bytes: bytes, hash_size: int = 8) -> str:
     """
     Computes a Difference Hash (dHash) for visual duplicate detection.
-    Resizes image to (hash_size + 1, hash_size), converts to grayscale,
-    and compares adjacent pixels.
+
+    Algorithm & Mathematical Pipeline:
+    1. Grayscale Conversion: Transforms 3-channel RGB to luminance channel L, stripping chromatic variance.
+    2. Subsampling: Downsamples image to (hash_size + 1, hash_size) grid using anti-aliased Lanczos interpolation.
+    3. Gradient Binarization: Compares adjacent horizontal pixels P[x] > P[x+1], generating
+       hash_size * hash_size boolean values (default: 8 * 8 = 64 bits).
+    4. Bit Packing: Encodes 64 boolean flags into a 16-character hexadecimal fingerprint.
+
+    Invariance Guarantees:
+    - Scale & Aspect Ratio: Lanczos grid subsampling normalizes differences in resolution and framing.
+    - Illumination Shifts: Relative horizontal brightness comparisons remain invariant under linear shifts.
+    - Compression Noise: High-frequency JPEG compression artifacts are smoothed out during subsampling.
+
+    Args:
+        image_bytes: Raw binary image payload.
+        hash_size: Grid height and column count (default: 8 yields 64-bit dHash).
+
+    Returns:
+        16-character hexadecimal hash string.
     """
     with Image.open(io.BytesIO(image_bytes)) as img:
         img_gray = img.convert("L").resize((hash_size + 1, hash_size), Image.Resampling.LANCZOS)
@@ -76,7 +93,14 @@ def compute_perceptual_hash(image_bytes: bytes, hash_size: int = 8) -> str:
 
 
 def hamming_distance(hash1: str, hash2: str) -> int:
-    """Calculates Hamming distance between two hex perceptual hashes."""
+    """
+    Calculates bitwise Hamming distance between two hexadecimal perceptual hashes.
+    
+    Interprets each 16-character hex string as a 64-bit integer and calculates
+    the population count of their bitwise XOR (differing bits).
+    A distance d <= 4 indicates identical produce captures under slightly varying
+    lighting or minor smartphone camera shake.
+    """
     if len(hash1) != len(hash2):
         return max(len(hash1), len(hash2)) * 4
     val1 = int(hash1, 16)
@@ -92,7 +116,20 @@ def detect_duplicate_images(
 ) -> Tuple[bool, Optional[str]]:
     """
     Checks if an image is an exact or perceptual near-duplicate of previously ingested images.
-    Returns (is_duplicate, reason_or_duplicate_id).
+
+    Scientific-Integrity Protocol:
+    1. Exact Match Gate (Tier 1): Checks SHA-256 cryptographic digest against all ingested images.
+       Prevents byte-identical duplicate submissions.
+    2. Perceptual Near-Match Gate (Tier 2): Computes 64-bit dHash and computes Hamming distance
+       against all existing images. If distance < distance_threshold (default <= 4), flags the image
+       as a near-duplicate of an existing sample ID.
+    
+    Guarantees:
+    - Protects train/val/test splits against data leakage caused by bursting photos of the same subject.
+    - Avoids double-counting the same subject in inter-grader agreement studies.
+
+    Returns:
+        Tuple of (is_duplicate: bool, details_or_id: Optional[str]).
     """
     new_sha = compute_image_hash(new_image_bytes)
     if new_sha in existing_sha256_hashes:
