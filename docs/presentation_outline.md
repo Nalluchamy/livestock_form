@@ -6,9 +6,10 @@ This document provides the complete slide-by-slide structure, visual suggestions
 
 ### Slide 1: Title Slide
 - **Header:** Explainable Livestock Health Grading System (ELHGS)
-- **Subtitle:** AI-Assisted Health Grading with Transparent Decision Rules & Human Disagreement Review
+- **Scope Statement:** ELHGS is an AI-assisted livestock health and condition grading system that provides explainable recommendations using non-identifiable images and measurable health attributes. It supports human graders and never replaces expert judgment.
+- **Subtitle:** AI-Assisted Health Grading with Transparent Decision Rules & Persistent Disagreement Review
 - **Suggested Visual:** Project Logo, High-contrast Civic UI mockup on mobile device.
-- **Speaker Notes:** *"Good morning judges. Today we present ELHGS, a system designed to solve a multi-billion dollar problem in livestock markets: subjective grader disagreement."*
+- **Speaker Notes:** *"Good morning judges. Today we present ELHGS, an AI-assisted livestock health grading platform that supports human graders and never replaces expert judgment."*
 
 ---
 
@@ -114,14 +115,14 @@ This document provides the complete slide-by-slide structure, visual suggestions
 
 ---
 
-### Slide 12: Controlled Experiment & Results (Phase 8)
-- **Header:** Empirical Proof of Impact
+### Slide 12: Controlled Experiment & Results (Phase 8 & Phase 11)
+- **Header:** Empirical Proof & Claim Transparency
 - **Key Points:**
-  - **71.8% Reduction** in inter-grader disputes.
-  - **67.3% Time Savings** per animal evaluation (5.2 mins -> 1.7 mins).
-  - *Simulation Disclaimer:* Evaluated on 200 representative trials.
-- **Suggested Visual:** Bar chart comparing Unassisted vs. AI-Assisted agreement rates.
-- **Speaker Notes:** *"In controlled simulation trials, ELHGS reduced inter-grader disputes by 71.8% and cut evaluation time per animal by 67.3%."*
+  - **71.8% Reduction** in inter-grader disputes `[Simulated in-silico baseline, N=200]`.
+  - **67.3% Time Savings** per animal evaluation (5.2 mins -> 1.7 mins) `[Simulated trial]`.
+  - **Phase 11 Production Data Upgrade:** Infrastructure ready for genuine expert double-blind dataset (`dataset/real/`); prospective field validation ethically marked as pending.
+- **Suggested Visual:** Comparison of simulated trial baseline vs. real validation readiness cards.
+- **Speaker Notes:** *"In controlled simulation trials, ELHGS modeled a 71.8% dispute reduction. In Phase 11, we built the complete real-data ingestion pipeline, persistent PostgreSQL review audit trail, and formal stakeholder protocols."*
 
 ---
 

@@ -1,10 +1,13 @@
 # ⚠️ System Limitations & Documented Edge Case Audit
 
+> **Scope Statement:** ELHGS is an AI-assisted livestock health and condition grading system that provides explainable recommendations using non-identifiable images and measurable health attributes. It supports human graders and never replaces expert judgment.
+
 | Field | Description |
 |:---|:---|
-| **Document Version** | 1.0.0 (Workstream 4 Empirical Evidence Audit) |
+| **Document Version** | 1.1.0 (Phase 11 Audit Edition) |
 | **Edge Cases Documented** | 4 real system execution scenarios with inputs, outputs, confidence, & action |
-| **Audit Status** | Verified against running API & PWA services |
+| **Real Evaluation Status** | Retrospective evaluation on held-out splits; prospective human study pending |
+| **Audit Status** | Verified against running API, PostgreSQL models, and PWA services |
 
 ---
 
@@ -138,3 +141,21 @@ The Decision Tree ML model was trained on a 600-sample synthetic dataset (`datas
 ### Technical Recommendation
 1. **Production Default:** The deterministic, explainable **Rule Engine MUST be treated as the primary production default grading method**.
 2. **ML Positioning:** The Decision Tree ML model is positioned strictly as an **experimental/advisory secondary layer** until retrained on a larger real-world expert validation dataset ($N \ge 500$).
+
+---
+
+## 4. Stage 2 Produce Quality Grading Operational Boundaries & External Dependencies
+
+### 4.1. Domain Delineation
+The Stage 2 demonstration establishes Fresh Market Tomato Quality Grading as the primary demonstration domain. The livestock health grading engine (Phases 1–14) is completely preserved as a dedicated secondary module.
+- Produce attributes (surface blemish %, ripeness color index, aspect ratio circularity, bruise severity) are strictly quarantined from livestock attributes.
+
+### 4.2. External Data Dependencies (Transparency Disclosure)
+1. **Real Image Collection Status**: The ingestion and sanitization pipeline (`backend/evaluation/produce_ingestion.py`) is fully functional. In the absence of a large field-collected raw dataset on disk, the system transparently reports `PENDING_REAL_IMAGES` rather than injecting unverified synthetic images.
+2. **Double-Blind Expert Annotation**: The double-blind interface and persistent adjudication workflow are operational. Where agricultural produce graders have not yet logged live in-person annotations, reference grading is explicitly marked as `PENDING_EXPERT_REVIEW`.
+3. **Controlled Experiment Protocol**: The before-and-after experiment runner (`backend/evaluation/produce_experiment_runner.py`) provides end-to-end mathematical metrics (Cohen's kappa, dispute reduction %, timing) and PostgreSQL persistence. Trials pending physical participant execution are designated `PENDING_EXPERIMENT`.
+4. **Stakeholder Validation**: Comprehensive consent forms, task protocols, and survey instruments are created in `docs/STAKEHOLDER_VALIDATION.md` and flagged as `PENDING_EXTERNAL_EVIDENCE`.
+
+### 4.3. Optical & Physical Boundaries
+- **Internal Flesh Quality**: Photographic inspection cannot assess internal sugar content (Brix), internal hollow cavities (puffiness), or seed cavity rot without destructive testing or near-infrared spectroscopy (NIR).
+- **Surface Lighting Glare**: Severe specular reflection from direct sunlight can mimic pale/unripe patches; standardized diffuse lighting ($\ge 500\text{ lux}$) is mandatory.

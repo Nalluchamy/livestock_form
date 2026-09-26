@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ELHGS Stakeholder Feedback Submission Template",
+  "type": "object",
+  "required": [
+    "participant_id",
+    "role",
+    "submission_timestamp",
+    "explanation_clarity",
+    "grading_recommendation_usefulness",
+    "confidence_score_usefulness",
+    "disagreement_workflow",
+    "usability",
+    "offline_functionality",
+    "perceived_trust"
+  ],
+  "properties": {
+    "participant_id": {
+      "type": "string",
+      "pattern": "^STK-(FARM|GRD|VET|AUD)-[0-9]{3}$",
+      "description": "Anonymous token, e.g. STK-GRD-001"
+    },
+    "role": {
+      "type": "string",
+      "enum": ["FARM_OPERATOR", "FIELD_GRADER", "VETERINARIAN", "SENIOR_AUDITOR"]
+    },
+    "submission_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "explanation_clarity": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Likert 1-5"
+    },
+    "grading_recommendation_usefulness": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Likert 1-5"
+    },
+    "confidence_score_usefulness": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Likert 1-5"
+    },
+    "disagreement_workflow": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Likert 1-5"
+    },
+    "usability": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Likert 1-5"
+    },
+    "offline_functionality": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Likert 1-5"
+    },
+    "perceived_trust": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Likert 1-5 (5 = purely supportive, 1 = punitive/surveillance)"
+    },
+    "suggested_improvements": {
+      "type": "string",
+      "description": "Open qualitative critique and feature gap recommendations"
+    }
+  }
+}

@@ -1,13 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, Camera, History, BarChart3, ShieldCheck, AlertTriangle } from 'lucide-react';
+import { Home, Camera, History, BarChart3, ShieldCheck, AlertTriangle, Award, Sparkles } from 'lucide-react';
 
 const navItems = [
   { to: '/', label: 'Home', icon: Home },
-  { to: '/capture', label: 'Capture Grade', icon: Camera },
-  { to: '/history', label: 'Grading History', icon: History },
+  { to: '/produce', label: 'Produce Grading (Tomatoes)', icon: Sparkles },
+  { to: '/capture', label: 'Livestock Health (BCS)', icon: Camera },
   { to: '/disagreements', label: 'Disagreements', icon: AlertTriangle },
-  { to: '/metrics', label: 'Metrics', icon: BarChart3 },
+  { to: '/annotations', label: 'Expert Annotation', icon: Award },
+  { to: '/history', label: 'Grading History', icon: History },
+  { to: '/metrics', label: 'Metrics Dashboard', icon: BarChart3 },
   { to: '/ethics', label: 'Ethics & Guardrails', icon: ShieldCheck },
 ];
 

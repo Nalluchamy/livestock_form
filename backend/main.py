@@ -6,7 +6,20 @@ from sqlalchemy.exc import SQLAlchemyError
 from backend.core.settings import settings
 from backend.core.logging import logger
 from backend.api import health
-from backend.api.v1 import grading, disagreements, metrics, sync
+from backend.api.v1 import (
+    grading,
+    disagreements,
+    metrics,
+    sync,
+    reviews,
+    experiments,
+    dataset,
+    dataset_upload,
+    annotations,
+    auth,
+    admin,
+    produce_grading,
+)
 from backend.middleware.request_id import RequestIDMiddleware
 from backend.middleware.logging import LoggingMiddleware
 from backend.services.exceptions import (
@@ -52,10 +65,18 @@ def create_app() -> FastAPI:
     app.include_router(grading.router, prefix="/api/v1")
     app.include_router(grading.history_router, prefix="/api/v1")
     app.include_router(disagreements.router, prefix="/api/v1")
+    app.include_router(reviews.router, prefix="/api/v1")
+    app.include_router(experiments.router, prefix="/api/v1")
+    app.include_router(dataset.router, prefix="/api/v1")
+    app.include_router(dataset_upload.router, prefix="/api/v1")
+    app.include_router(annotations.router, prefix="/api/v1")
     app.include_router(metrics.router, prefix="/api/v1")
     app.include_router(sync.router, prefix="/api/v1")
+    app.include_router(auth.router, prefix="/api/v1")
+    app.include_router(admin.router, prefix="/api/v1")
+    app.include_router(produce_grading.router, prefix="/api/v1")
 
-    logger.info("FastAPI application created with Phase 4 extensions.")
+    logger.info("FastAPI application created with Phase 15 Stage 2 Produce Quality Grading extensions.")
     return app
 
 app = create_app()

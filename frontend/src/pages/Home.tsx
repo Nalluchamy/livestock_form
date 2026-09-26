@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, History, ShieldCheck, ArrowRight, Activity, AlertTriangle } from 'lucide-react';
+import { Camera, History, ArrowRight, Activity, AlertTriangle } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { getMetrics } from '../services/metricsService';
 import { getGradingHistory } from '../services/historyService';
@@ -17,30 +17,35 @@ export const Home: React.FC = () => {
     <div className="space-y-6 pb-20 md:pb-6">
       {/* Hero Card */}
       <div className="bg-gradient-to-r from-civic-navy to-civic-slate text-white p-6 rounded-2xl shadow-md border border-slate-800 space-y-4">
-        <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-civic-teal/30 text-civic-lightTeal border border-civic-teal/40">
-          <Activity className="w-3.5 h-3.5 mr-1.5" /> Explainable AI Hackathon Prototype
+        <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-rose-500/30 text-rose-200 border border-rose-400/40">
+          <Activity className="w-3.5 h-3.5 mr-1.5" /> Stage 2 (70%) Review: Produce & Farm Operations
         </div>
         <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-          Explainable Livestock Health Grading System
+          Explainable Produce & Quality Grading System
         </h2>
         <p className="text-slate-300 text-sm max-w-2xl leading-relaxed">
-          AI-assisted health grading that reduces human disagreement by providing deterministic, transparent, and explainable decision factors. Human reviewers always maintain final authority.
+          AI-assisted produce-quality grading (demonstrated on fresh market tomatoes) and livestock health monitoring. Provides explainable recommendations, double-blind disagreement reviews, and objective before-and-after experiment tracking.
         </p>
 
-        <div className="pt-2 flex flex-col sm:flex-row gap-3">
+        <div className="pt-2 flex flex-wrap gap-3">
           <Link
-            to="/capture"
-            className="h-12 px-5 bg-civic-teal hover:bg-civic-lightTeal text-white font-bold text-sm rounded-xl flex items-center justify-center space-x-2 shadow-lg transition-transform active:scale-[0.98]"
+            to="/produce"
+            className="h-12 px-5 bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm rounded-xl flex items-center justify-center space-x-2 shadow-lg transition-transform active:scale-[0.98]"
           >
-            <Camera className="w-5 h-5" />
-            <span>Capture New Grade</span>
+            <span>🍅 Grade Produce (Tomatoes)</span>
           </Link>
           <Link
-            to="/ethics"
+            to="/metrics"
+            className="h-12 px-5 bg-civic-teal hover:bg-civic-lightTeal text-white font-bold text-sm rounded-xl flex items-center justify-center space-x-2 shadow-lg transition-transform active:scale-[0.98]"
+          >
+            <span>📊 Stage 2 Experiment Dashboard</span>
+          </Link>
+          <Link
+            to="/capture"
             className="h-12 px-5 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm rounded-xl flex items-center justify-center space-x-2 border border-white/20 transition-colors"
           >
-            <ShieldCheck className="w-5 h-5 text-civic-lightTeal" />
-            <span>Ethical Guardrails</span>
+            <Camera className="w-4 h-4 text-slate-300" />
+            <span>Livestock Module (BCS)</span>
           </Link>
         </div>
       </div>

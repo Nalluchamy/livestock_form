@@ -1,7 +1,7 @@
 # Product Requirements Document
 
 ## Project Overview
-Explainable Livestock Health Grading System (ELHGS) is an AI-assisted system that aids human graders in assessing livestock health. By providing transparent AI decisions with confidence scores, it aims to reduce human disagreements without replacing expert human judgment.
+ELHGS is an AI-assisted livestock health and condition grading system that provides explainable recommendations using non-identifiable images and measurable health attributes. It supports human graders and never replaces expert judgment. By providing transparent AI decisions with confidence scores, it aims to reduce human disagreements without replacing expert human judgment.
 
 ## Problem Statement
 Human graders often disagree on livestock health grades, leading to inconsistent assessments, market disputes, and reduced trust. Existing AI solutions act as "black boxes," providing no explanation for their grades, which fails to support human decision-making and ethical standards.

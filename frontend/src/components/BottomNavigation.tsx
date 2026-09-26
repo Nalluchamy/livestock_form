@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, Camera, History, BarChart3 } from 'lucide-react';
+import { Home, Camera, BarChart3, Sparkles } from 'lucide-react';
 
 const mobileNavItems = [
   { to: '/', label: 'Home', icon: Home },
-  { to: '/capture', label: 'Grade', icon: Camera },
-  { to: '/history', label: 'History', icon: History },
+  { to: '/produce', label: 'Produce', icon: Sparkles },
+  { to: '/capture', label: 'Livestock', icon: Camera },
   { to: '/metrics', label: 'Metrics', icon: BarChart3 },
 ];
 

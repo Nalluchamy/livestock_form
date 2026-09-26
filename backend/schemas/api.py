@@ -42,3 +42,35 @@ class DisagreementRequest(BaseModel):
             }
         }
     }
+
+
+class ProduceGradeRequest(BaseModel):
+    surface_defect_pct: Optional[float] = 0.0
+    ripeness_stage: Optional[str] = "RED"
+    color_uniformity_pct: Optional[float] = 85.0
+    bruising_severity: Optional[str] = "NONE"
+    shape_circularity: Optional[float] = 0.85
+    aspect_ratio: Optional[float] = 1.0
+    critical_defects: Optional[list[str]] = []
+    laplacian_var: Optional[float] = 150.0
+    illumination_mean: Optional[float] = 120.0
+    surface_occlusion_pct: Optional[float] = 0.0
+    human_grade: Optional[str] = None
+    sample_id: Optional[str] = None
+    create_persistent_review: Optional[bool] = True
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "surface_defect_pct": 3.5,
+                "ripeness_stage": "RED",
+                "color_uniformity_pct": 88.0,
+                "bruising_severity": "NONE",
+                "shape_circularity": 0.88,
+                "aspect_ratio": 1.02,
+                "critical_defects": [],
+                "human_grade": "A"
+            }
+        }
+    }
+

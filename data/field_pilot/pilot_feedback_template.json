@@ -1,0 +1,23 @@
+{
+  "pilot_run_id": "PILOT-2026-COW-01",
+  "facility_id": "RANCH-ALPHA-01",
+  "evaluator_role": "VETERINARIAN",
+  "evaluator_id": "EXP-CATTLE-01",
+  "rubric_version": "v2.0",
+  "quantitative_ratings": {
+    "rubric_clarity_score_1_to_5": 5,
+    "photo_visible_separation_rating_1_to_5": 5,
+    "appetite_non_inference_feasibility_1_to_5": 4,
+    "system_speed_and_responsiveness_1_to_5": 5,
+    "offline_capture_reliability_1_to_5": 5,
+    "explainability_reasons_helpfulness_1_to_5": 5,
+    "urgent_escalation_protocol_clarity_1_to_5": 5
+  },
+  "qualitative_observations": {
+    "chute_lighting_challenges": "Morning glare from east side caused slight reflection over shoulder area.",
+    "boundary_clarity_comments": "Separating appetite from visual grading is critical; ranch feed logs worked well.",
+    "workflow_friction_points": "Entering manual weights took 30 seconds longer when scale did not have direct Bluetooth sync.",
+    "recommendations_for_v3": "Add direct barcode scanner for ear tag tracking while preserving downstream anonymization."
+  },
+  "submitted_at": "2026-09-24T23:30:00Z"
+}

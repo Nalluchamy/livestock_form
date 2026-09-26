@@ -1,7 +1,9 @@
-# 📈 ELHGS Project Statistics & Metrics
+# 📈 ELHGS Project Statistics & Metrics (Phase 11 Production Data Upgrade)
 
-- **Completed Phases:** 10 / 10 (100% Phase Completion)
-- **Primary Tech Stack:** Python 3.13, FastAPI, SQLAlchemy 2.x, PostgreSQL, React 19, Vite, TypeScript, TailwindCSS, scikit-learn, Docker.
+> **Scope Statement:** ELHGS is an AI-assisted livestock health and condition grading system that provides explainable recommendations using non-identifiable images and measurable health attributes. It supports human graders and never replaces expert judgment.
+
+- **Completed Phases:** 11 / 11 (100% Phase Completion)
+- **Primary Tech Stack:** Python 3.11/3.13, FastAPI, SQLAlchemy 2.x, PostgreSQL, Alembic, React 19, Vite, TypeScript, TailwindCSS, scikit-learn, Pillow, Docker.
 
 ---
 
@@ -9,11 +11,12 @@
 
 | Category | Count | Key Components |
 | :--- | :---: | :--- |
-| **Backend Modules** | 18 | `grading/`, `services/`, `repositories/`, `ml/`, `evaluation/`, `middleware/` |
-| **Frontend Components & Pages** | 21 | 14 Reusable UI Components, 7 Application Pages (`Home`, `Capture`, `Result`, etc.) |
-| **API Endpoints** | 6 | `/health`, `/grade`, `/grading-events`, `/grading-events/{id}`, `/disagreements`, `/metrics`, `/sync` |
-| **ML Models Trained** | 2 | Decision Tree Classifier (88.17% Acc [measured, 600 synthetic samples]), Logistic Regression |
-| **Passing Unit/API Tests** | **34** | `test_rule_engine`, `test_confidence`, `test_grading_api`, `test_ml_prediction`, `test_sync_api`, etc. |
-| **Markdown Reports Generated** | 5 | `experiment_report.md`, `comparison_report.md`, `metrics_report.md`, `stakeholder_validation.md`, `limitations_report.md` |
-| **Documentation Files** | 16 | `README.md`, `architecture.md`, `database.md`, `api.md`, `frontend.md`, `machine_learning.md`, `offline.md`, `evaluation.md`, `deployment.md`, `user_guide.md`, `admin_guide.md`, `demo_script.md`, `judge_questions.md`, `presentation_outline.md`, `demo_video.md`, `poster_content.md` |
-| **Overall Test Pass Rate** | **100%** | All 34 backend test cases passing |
+| **Backend Modules & Routers** | 24 | `grading/`, `services/`, `repositories/`, `ml/`, `evaluation/`, `schemas/`, `api/v1/` |
+| **Frontend Components & Pages** | 24 | 14 UI Components, 7 Pages, Services (`reviewService`, `experimentService`, `datasetService`, etc.) |
+| **API Endpoints** | 12 | `/health`, `/grade`, `/grading-events`, `/reviews`, `/reviews/{id}/resolve`, `/experiments`, `/experiments/run`, `/dataset-info`, `/metrics`, `/sync` |
+| **ML & Rule Models** | 3 | Deterministic Rule Engine, Decision Tree Classifier, Logistic Regression |
+| **Passing Unit/API Tests** | **65** | All 34 legacy tests + 31 Phase 11 tests (`test_image_sanitization`, `test_annotation_schema`, `test_dataset_splitting`, `test_review_persistence`, `test_experiment_persistence`, `test_phase11_api`, `test_real_dataset_runner`) |
+| **Overall Test Pass Rate** | **100%** | 65 / 65 tests passing in 1.40s |
+| **Database Tables & Migrations** | 7 Tables, 2 Migrations | `dim_sample`, `dim_grader`, `dim_image`, `dim_criterion`, `fact_grading_events`, `disagreement_reviews`, `experiment_results` |
+| **Documentation & Protocols** | 19 | Architecture, ethics, rubric, rules, dataset collection protocol, stakeholder validation protocol, limitations, demo script, presentation outline, etc. |
+| **Audit Status** | **AUDITED & CLEAN** | Eradicated fabricated quotes, isolated synthetic baselines, explicit pending real data markers |

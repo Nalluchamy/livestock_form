@@ -7,6 +7,13 @@ from sqlalchemy.pool import StaticPool
 from backend.main import app
 from backend.database.base import Base
 from backend.database.session import get_db
+from backend.core.settings import settings
+
+@pytest.fixture(autouse=True)
+def reset_settings():
+    original_demo = settings.DEMO_MODE
+    yield
+    settings.DEMO_MODE = original_demo
 
 # SQLite in-memory for testing
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"

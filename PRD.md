@@ -40,17 +40,17 @@
 
 ### 1.1 Product Vision
 
-ELHGS is an **AI-assisted decision-support system** that reduces valuation disputes between livestock health graders by providing transparent, explainable grading decisions. The system supports human decision-making — it **MUST NEVER replace expert reviewers**.
+ELHGS is an AI-assisted livestock health and condition grading system that provides explainable recommendations using non-identifiable images and measurable health attributes. It supports human graders and never replaces expert judgment.
 
 ### 1.2 Value Proposition
 
 | Stakeholder | Pain Point | ELHGS Value |
 |:---|:---|:---|
 | **Field Graders** | Subjective interpretation leads to inconsistent grades | Instant Rule Engine + ML advisory with plain-text reasons |
-| **Farm Managers** | Up to 35% dispute rate causes financial loss | 71.8% measured dispute reduction |
+| **Farm Managers** | Up to 35% dispute rate causes financial loss | 71.8% dispute reduction in controlled in-silico simulation (prospective field study pending) |
 | **Veterinarians** | Black-box AI models are rejected and untrusted | White-box Decision Tree with exact feature importance |
-| **Buyers** | Slow evaluation process delays market transactions | 67.3% evaluation time reduction (5.2 min → 1.7 min) |
-| **Regulatory Bodies** | Lack of audit trail for grading decisions | Full Star Schema audit history with timestamped events |
+| **Buyers** | Slow evaluation process delays market transactions | 67.3% simulated evaluation time reduction (5.2 min → 1.7 min) |
+| **Regulatory Bodies** | Lack of audit trail for grading decisions | Full Star Schema audit history with persistent PostgreSQL reviews & timestamped events |
 
 ### 1.3 Core Design Principles
 

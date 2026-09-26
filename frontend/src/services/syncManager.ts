@@ -7,14 +7,22 @@ export interface SyncResult {
   conflicts: QueuedGradingItem[];
 }
 
-export async function processOfflineSyncQueue(): Promise<SyncResult> {
-  const items = await localDB.getAllPending();
+export async function processOfflineSyncQueue(activeUserId?: string): Promise<SyncResult> {
+  const items = activeUserId
+    ? await localDB.getItemsForUser(activeUserId)
+    : await localDB.getAllPending();
+
   let syncedCount = 0;
   let failedCount = 0;
   const conflicts: QueuedGradingItem[] = [];
 
   for (const item of items) {
     if (item.status === 'syncing') continue;
+
+    // Safety guard: prevent cross-account sync contamination
+    if (activeUserId && item.userId && item.userId !== activeUserId) {
+      continue;
+    }
 
     try {
       // Mark syncing

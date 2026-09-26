@@ -1,0 +1,1 @@
+sample_id,filename,dataset_type,source_type,capture_date,capture_environment,camera_type,grade,grader_1_grade,grader_2_grade,adjudicated_grade,grader_1_confidence,grader_2_confidence,defect_pct,ripeness_stage,occlusion_pct,image_quality_status,sha256,dhash,is_synthetic,is_real,annotation_status,review_status

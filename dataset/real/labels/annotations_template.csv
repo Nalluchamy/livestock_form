@@ -1,0 +1,2 @@
+sample_id,image_path,body_condition,coat_quality,eye_condition,wound_presence,mobility,appetite,weight_if_available,expert_grade_1,expert_grade_2,final_consensus_grade,annotation_status
+REAL-SAMPLE-TEMPLATE-001,images/template.jpg,3.0,Smooth,Clear,None,Normal,Good,450.0,A,A,A,CONSENSUS_REACHED

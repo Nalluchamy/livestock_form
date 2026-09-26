@@ -22,10 +22,23 @@ class Settings(BaseSettings):
     POSTGRES_HOST: str = "localhost"
     POSTGRES_PORT: str = "5432"
 
-    # Security (Placeholder for future phases)
-    SECRET_KEY: str = "replace_me_in_production"
+    # Security & Authentication
+    SECRET_KEY: str = "replace_me_in_production_secret_key_jwt_512"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 7
+    PASSWORD_RESET_TOKEN_EXPIRE_MINUTES: int = 15
+    LOCKOUT_MAX_ATTEMPTS: int = 5
+    LOCKOUT_DURATION_MINUTES: int = 15
+    SECURE_COOKIES: bool = False
+
+    # Default Bootstrapped Admin
+    ADMIN_DEFAULT_USERNAME: str = "admin"
+    ADMIN_DEFAULT_PASSWORD: str = "AdminSecurePass2026!"
+    ADMIN_DEFAULT_EMAIL: str = "admin@elhgs.internal"
+
+    # Uploads & Storage
+    MAX_UPLOAD_SIZE_BYTES: int = 15 * 1024 * 1024  # 15MB
 
     # Offline Mode / Sync
     OFFLINE_MODE_ENABLED: bool = False

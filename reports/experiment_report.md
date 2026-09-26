@@ -18,15 +18,15 @@ This report evaluates the empirical impact of the Explainable Livestock Health G
 
 | Metric | Control Arm (Unassisted Humans) | Experimental Arm (ELHGS AI-Assisted) | Delta / Impact |
 | :--- | :--- | :--- | :--- |
-| **Agreement Rate** | 77.5% | **97.5%** | **+20.0% Increase** |
-| **Dispute / Disagreement Rate** | 22.5% | **2.5%** | **88.9% Reduction** |
+| **Agreement Rate** | 76.5% | **98.5%** | **+22.0% Increase** |
+| **Dispute / Disagreement Rate** | 23.5% | **1.5%** | **93.6% Reduction** |
 | **Average Evaluation Time** | 5.28 mins / head | **1.7 mins / head** | **67.8% Time Saved** |
-| **Average System Confidence** | N/A | **84.9%** | Transparent Uncertainty |
-| **Senior Review Escalation Rate** | 100% Manual Disputes | **2.5%** | Automated Selective Escalation |
+| **Average System Confidence** | N/A | **85.1%** | Transparent Uncertainty |
+| **Senior Review Escalation Rate** | 100% Manual Disputes | **84.0%** | Automated Selective Escalation |
 
 ---
 
 ## 3. Key Observations
-1. **Disagreement Reduction:** Providing transparent decision rules reduced inter-grader disputes by **88.9%**.
+1. **Disagreement Reduction:** Providing transparent decision rules reduced inter-grader disputes by **93.6%**.
 2. **Efficiency Gains:** Average evaluation time per animal dropped from 5.28 minutes to 1.7 minutes.
 3. **Human Authority Intact:** In 100% of cases where human and AI disagreed, the system preserved the human grade and successfully logged a review request for auditing.

@@ -1,0 +1,209 @@
+{
+  "report_name": "EQGS Synthetic Produce Quality Control Report",
+  "generated_at": "2026-09-25T11:51:34.387062+00:00",
+  "total_images_verified_on_disk": 6,
+  "qc_pass_count": 3,
+  "qc_review_flagged_count": 3,
+  "qc_fail_count": 0,
+  "duplicates_detected": 0,
+  "target_planned_samples": 320,
+  "completion_rate_pct": 1.88,
+  "non_fabrication_declaration": "This report evaluates exclusively physical images present on disk. No synthetic placeholders or simulated counts are used.",
+  "detailed_sample_records": [
+    {
+      "sample_id": "syn_tom_a_001",
+      "filename": "syn_tom_a_001.jpg",
+      "category": "grade_a",
+      "file_size_bytes": 617161,
+      "dimensions": "1024x1024",
+      "mode": "RGB",
+      "format": "JPEG",
+      "sha256": "9693849893aaa600defdc648ca9b052b2208472af6751d1a61aded733805b6c8",
+      "phash": "3d3223371f0f0fec",
+      "intended_grade": "A",
+      "derived_system_grade": "C",
+      "grade_match": false,
+      "confidence": 90.0,
+      "extracted_features": {
+        "surface_defect_pct": 24.4,
+        "ripeness_stage": "TURNING",
+        "color_uniformity_pct": 40.0,
+        "bruising_severity": "MINOR",
+        "shape_circularity": 1.0,
+        "aspect_ratio": 1.0,
+        "laplacian_var": 126.0,
+        "illumination_mean": 151.1,
+        "surface_occlusion_pct": 1.0,
+        "critical_defects": []
+      },
+      "triggered_rules": [
+        "RULE_GRADE_C_DOWNGRADE"
+      ],
+      "qc_status": "QC_REVIEW_FLAGGED",
+      "flags": []
+    },
+    {
+      "sample_id": "syn_tom_a_002",
+      "filename": "syn_tom_a_002.jpg",
+      "category": "grade_a",
+      "file_size_bytes": 777952,
+      "dimensions": "1024x1024",
+      "mode": "RGB",
+      "format": "JPEG",
+      "sha256": "571985f7c735e434775c90e2be6348fea176c00ff141d35d3864647cf8e16f14",
+      "phash": "0909537f3e1b0b43",
+      "intended_grade": "A",
+      "derived_system_grade": "C",
+      "grade_match": false,
+      "confidence": 90.0,
+      "extracted_features": {
+        "surface_defect_pct": 23.8,
+        "ripeness_stage": "PINK",
+        "color_uniformity_pct": 77.3,
+        "bruising_severity": "MINOR",
+        "shape_circularity": 1.0,
+        "aspect_ratio": 1.0,
+        "laplacian_var": 662.5,
+        "illumination_mean": 130.6,
+        "surface_occlusion_pct": 2.3,
+        "critical_defects": []
+      },
+      "triggered_rules": [
+        "RULE_GRADE_C_DOWNGRADE"
+      ],
+      "qc_status": "QC_REVIEW_FLAGGED",
+      "flags": []
+    },
+    {
+      "sample_id": "syn_tom_b_001",
+      "filename": "syn_tom_b_001.jpg",
+      "category": "grade_b",
+      "file_size_bytes": 743996,
+      "dimensions": "1024x1024",
+      "mode": "RGB",
+      "format": "JPEG",
+      "sha256": "b8b5abf262e28114d14fdae42ec39069eed3faa3e0f14b9e48b6cd4368787d13",
+      "phash": "8c4b494a263e48cc",
+      "intended_grade": "B",
+      "derived_system_grade": "C",
+      "grade_match": false,
+      "confidence": 90.0,
+      "extracted_features": {
+        "surface_defect_pct": 31.9,
+        "ripeness_stage": "PINK",
+        "color_uniformity_pct": 76.6,
+        "bruising_severity": "MODERATE",
+        "shape_circularity": 1.0,
+        "aspect_ratio": 1.0,
+        "laplacian_var": 458.6,
+        "illumination_mean": 100.4,
+        "surface_occlusion_pct": 1.8,
+        "critical_defects": []
+      },
+      "triggered_rules": [
+        "RULE_GRADE_C_DOWNGRADE"
+      ],
+      "qc_status": "QC_REVIEW_FLAGGED",
+      "flags": []
+    },
+    {
+      "sample_id": "syn_tom_c_001",
+      "filename": "syn_tom_c_001.jpg",
+      "category": "grade_c",
+      "file_size_bytes": 908766,
+      "dimensions": "1024x1024",
+      "mode": "RGB",
+      "format": "JPEG",
+      "sha256": "26a5b2545c4aa72d8b10e898ae9b82df26adba58418dc565998da483c5acc3de",
+      "phash": "0900ceccf4bc824d",
+      "intended_grade": "C",
+      "derived_system_grade": "C",
+      "grade_match": true,
+      "confidence": 90.0,
+      "extracted_features": {
+        "surface_defect_pct": 26.2,
+        "ripeness_stage": "GREEN",
+        "color_uniformity_pct": 59.0,
+        "bruising_severity": "MODERATE",
+        "shape_circularity": 1.0,
+        "aspect_ratio": 1.0,
+        "laplacian_var": 580.7,
+        "illumination_mean": 84.0,
+        "surface_occlusion_pct": 2.7,
+        "critical_defects": []
+      },
+      "triggered_rules": [
+        "RULE_GRADE_C_DOWNGRADE"
+      ],
+      "qc_status": "QC_PASS",
+      "flags": []
+    },
+    {
+      "sample_id": "syn_edge_001_blur",
+      "filename": "syn_edge_001_blur.jpg",
+      "category": "edge_cases",
+      "file_size_bytes": 692268,
+      "dimensions": "1024x1024",
+      "mode": "RGB",
+      "format": "JPEG",
+      "sha256": "458d529a899506a1dbf7c87f1a7691afe369fea0f709b9118cfd450e6a8c9d88",
+      "phash": "03b2c3602333f3f1",
+      "intended_grade": "EDGE_CASE",
+      "derived_system_grade": "REJECTED_IMAGE",
+      "grade_match": "N/A",
+      "confidence": 0.0,
+      "extracted_features": {
+        "surface_defect_pct": 27.9,
+        "ripeness_stage": "TURNING",
+        "color_uniformity_pct": 91.5,
+        "bruising_severity": "MODERATE",
+        "shape_circularity": 0.66,
+        "aspect_ratio": 1.0,
+        "laplacian_var": 101.5,
+        "illumination_mean": 28.3,
+        "surface_occlusion_pct": 19.2,
+        "critical_defects": []
+      },
+      "triggered_rules": [
+        "RULE_IMAGE_QUALITY_REJECTION"
+      ],
+      "qc_status": "QC_EDGE_CASE_VERIFIED",
+      "flags": [
+        "Optical quality gate flagged capture (blur/illumination/occlusion)",
+        "Image quality unsuitable for automated grading: Image severely under-illuminated (mean luminance 28.3 < 40.0 lux)"
+      ]
+    },
+    {
+      "sample_id": "syn_edge_002_occlusion",
+      "filename": "syn_edge_002_occlusion.jpg",
+      "category": "edge_cases",
+      "file_size_bytes": 916796,
+      "dimensions": "1024x1024",
+      "mode": "RGB",
+      "format": "JPEG",
+      "sha256": "88c1dc065607a5eb4efc9269c18d1dd1d170cd79357fc9e95d908fe3c0acb3fd",
+      "phash": "5470a899dd3ed6df",
+      "intended_grade": "EDGE_CASE",
+      "derived_system_grade": "C",
+      "grade_match": "N/A",
+      "confidence": 90.0,
+      "extracted_features": {
+        "surface_defect_pct": 33.5,
+        "ripeness_stage": "PINK",
+        "color_uniformity_pct": 59.7,
+        "bruising_severity": "MODERATE",
+        "shape_circularity": 1.0,
+        "aspect_ratio": 1.0,
+        "laplacian_var": 593.1,
+        "illumination_mean": 98.9,
+        "surface_occlusion_pct": 1.8,
+        "critical_defects": []
+      },
+      "triggered_rules": [
+        "RULE_GRADE_C_DOWNGRADE"
+      ],
+      "qc_status": "QC_EDGE_CASE_VERIFIED",
+      "flags": []
+    }
+  ]
+}

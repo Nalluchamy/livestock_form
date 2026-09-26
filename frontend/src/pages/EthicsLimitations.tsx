@@ -10,7 +10,7 @@ export const EthicsLimitations: React.FC = () => {
           <div>
             <h2 className="text-2xl font-bold text-civic-navy">Ethics & Responsible AI Guardrails</h2>
             <p className="text-sm text-slate-500">
-              Ethical principles governing the Explainable Livestock Health Grading System.
+              ELHGS is an AI-assisted livestock health and condition grading system that provides explainable recommendations using non-identifiable images and measurable health attributes. It supports human graders and never replaces expert judgment.
             </p>
           </div>
         </div>

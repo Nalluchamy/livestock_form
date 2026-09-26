@@ -6,7 +6,7 @@
 ---
 
 ## 🎯 Executive Overview
-ELHGS is an offline-first Progressive Web Application designed to reduce valuation disputes between livestock health graders while maintaining absolute human expert authority. 
+ELHGS is an AI-assisted livestock health and condition grading system that provides explainable recommendations using non-identifiable images and measurable health attributes. It supports human graders and never replaces expert judgment. 
 
 By combining a **deterministic Rule Engine baseline** with a **white-box Decision Tree Classifier**, ELHGS provides instant, explainable health grades (A–D) accompanied by plain-text decision factors and feature importance rankings.
 

@@ -1,12 +1,14 @@
 /**
  * IndexedDB Storage Engine for Offline Livestock Health Grading.
+ * Per-user queue isolation for secure offline operation on shared devices.
  * Zero external dependencies.
  */
 const DB_NAME = 'ELHGS_Offline_DB';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 
 export interface QueuedGradingItem {
   id: string; // Local UUID or timestamp
+  userId?: string; // Isolated per-user ID to prevent queue bleed
   timestamp: number;
   attributes: Record<string, any>;
   human_grade?: string;
@@ -28,10 +30,21 @@ export class LocalDatabase {
 
       request.onupgradeneeded = (event) => {
         const db = (event.target as IDBOpenDBRequest).result;
+        let store: IDBObjectStore;
         if (!db.objectStoreNames.contains('offline_queue')) {
-          const store = db.createObjectStore('offline_queue', { keyPath: 'id' });
+          store = db.createObjectStore('offline_queue', { keyPath: 'id' });
+        } else {
+          store = (event.currentTarget as any).transaction.objectStore('offline_queue');
+        }
+
+        if (!store.indexNames.contains('status')) {
           store.createIndex('status', 'status', { unique: false });
+        }
+        if (!store.indexNames.contains('timestamp')) {
           store.createIndex('timestamp', 'timestamp', { unique: false });
+        }
+        if (!store.indexNames.contains('userId')) {
+          store.createIndex('userId', 'userId', { unique: false });
         }
       };
 
@@ -70,6 +83,11 @@ export class LocalDatabase {
     });
   }
 
+  async getItemsForUser(userId: string): Promise<QueuedGradingItem[]> {
+    const all = await this.getAllPending();
+    return all.filter((item) => !item.userId || item.userId === userId);
+  }
+
   async removeItem(id: string): Promise<void> {
     const db = await this.init();
     return new Promise((resolve, reject) => {
@@ -80,6 +98,13 @@ export class LocalDatabase {
       req.onsuccess = () => resolve();
       req.onerror = () => reject(req.error);
     });
+  }
+
+  async clearUserQueue(userId: string): Promise<void> {
+    const userItems = await this.getItemsForUser(userId);
+    for (const item of userItems) {
+      await this.removeItem(item.id);
+    }
   }
 
   async clearAll(): Promise<void> {

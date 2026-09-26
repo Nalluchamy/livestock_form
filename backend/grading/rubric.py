@@ -1,4 +1,8 @@
 """
+ELHGS is an AI-assisted livestock health and condition grading system that provides explainable
+recommendations using non-identifiable images and measurable health attributes. It supports human
+graders and never replaces expert judgment.
+
 Rubric mappings that map raw measured values to their component grades.
 """
 from typing import Dict, Any, Tuple

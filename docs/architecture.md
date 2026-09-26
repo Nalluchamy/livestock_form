@@ -1,5 +1,7 @@
 # System Architecture
 
+> **ELHGS is an AI-assisted livestock health and condition grading system that provides explainable recommendations using non-identifiable images and measurable health attributes. It supports human graders and never replaces expert judgment.**
+
 This document describes the high-level architecture of the Explainable Livestock Health Grading System (ELHGS).
 
 ## System Context Diagram

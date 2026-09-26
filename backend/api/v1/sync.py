@@ -6,6 +6,8 @@ from pydantic import BaseModel
 from backend.database.session import get_db
 from backend.schemas.responses import APIResponse, success_response
 from backend.services.api_grading_service import APIGradingService
+from backend.core.auth_deps import get_current_user
+from backend.models.user import User
 
 router = APIRouter(prefix="/sync", tags=["Offline Sync"])
 
@@ -18,7 +20,11 @@ class SyncBatchRequest(BaseModel):
     items: List[SyncBatchItem]
 
 @router.post("", response_model=APIResponse[dict])
-def sync_offline_batch(payload: SyncBatchRequest, db: Session = Depends(get_db)):
+def sync_offline_batch(
+    payload: SyncBatchRequest, 
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
     """
     Batch endpoint processing offline queued grading events.
     """

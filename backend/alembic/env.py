@@ -8,7 +8,8 @@ from alembic import context
 import sys
 import os
 
-# Add backend directory to sys.path so alembic can find our models
+# Add root directory to sys.path so alembic can find our backend package
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from backend.database.base import Base

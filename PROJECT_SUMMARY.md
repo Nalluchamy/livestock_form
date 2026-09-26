@@ -3,7 +3,7 @@
 ## 1. Project Overview & Problem Statement
 Livestock valuation in agricultural markets relies heavily on manual physical observation. Subjective variance between human field graders leads to inter-rater dispute rates as high as 35%, creating market friction and financial loss for farmers. Traditional deep learning AI models are rejected by veterinarians due to their black-box nature, while cloud-only solutions fail in remote agricultural regions lacking cellular connectivity.
 
-The **Explainable Livestock Health Grading System (ELHGS)** resolves these challenges by delivering an offline-first Progressive Web Application (PWA) powered by a deterministic Rule Engine baseline and an advisory white-box Machine Learning layer.
+ELHGS is an AI-assisted livestock health and condition grading system that provides explainable recommendations using non-identifiable images and measurable health attributes. It supports human graders and never replaces expert judgment. The platform delivers an offline-first Progressive Web Application (PWA) powered by a deterministic Rule Engine baseline and an advisory white-box Machine Learning layer.
 
 ---
 

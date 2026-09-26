@@ -1,0 +1,10 @@
+[
+  {
+    "timestamp": "2026-09-25T06:49:33.071176+00:00",
+    "filename": "elhgs_backup_20260925_064933.sqlite",
+    "backup_path": "D:\\livestock_farm\\backups\\db\\elhgs_backup_20260925_064933.sqlite",
+    "size_bytes": 245760,
+    "sha256": "4846cf20bac4f5209fa8e30ec011d0cdd148926fac0333edc2b8aeff3accb52d",
+    "status": "VERIFIED"
+  }
+]

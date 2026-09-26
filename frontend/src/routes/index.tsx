@@ -7,6 +7,9 @@ import { GradingHistory } from '../pages/GradingHistory';
 import { DisagreementReview } from '../pages/DisagreementReview';
 import { MetricsDashboard } from '../pages/MetricsDashboard';
 import { EthicsLimitations } from '../pages/EthicsLimitations';
+import { ExpertAnnotation } from '../pages/ExpertAnnotation';
+import { Login } from '../pages/Login';
+import { ProduceGrading } from '../pages/ProduceGrading';
 
 export const router = createBrowserRouter([
   {
@@ -14,9 +17,12 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <Home /> },
+      { path: 'login', element: <Login /> },
+      { path: 'produce', element: <ProduceGrading /> },
       { path: 'capture', element: <CaptureGrade /> },
       { path: 'result', element: <GradingResult /> },
       { path: 'history', element: <GradingHistory /> },
+      { path: 'annotations', element: <ExpertAnnotation /> },
       { path: 'disagreements', element: <DisagreementReview /> },
       { path: 'metrics', element: <MetricsDashboard /> },
       { path: 'ethics', element: <EthicsLimitations /> },

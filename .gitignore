@@ -66,4 +66,6 @@ docker-compose.override.yml
 
 # Database and logs
 *.db
+*.sqlite
 *.log
+backups/db/*.sqlite

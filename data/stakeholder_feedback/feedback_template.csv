@@ -1,0 +1,2 @@
+participant_id,role,submission_timestamp,explanation_clarity,grading_recommendation_usefulness,confidence_score_usefulness,disagreement_workflow,usability,offline_functionality,perceived_trust,suggested_improvements
+STK-GRD-001,FIELD_GRADER,2026-09-24T12:00:00Z,5,5,4,5,4,5,5,"Example template row: Add visual badge for missing attribute warning."

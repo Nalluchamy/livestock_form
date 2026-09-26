@@ -1,6 +1,6 @@
-# 🎬 ELHGS Live Hackathon Demonstration Script
+# 🎬 ELHGS Live Demonstration & Walkthrough Script
 
-This document provides a step-by-step script for live demonstrations and judge walkthroughs for the Explainable Livestock Health Grading System (ELHGS).
+> **Scope Statement:** ELHGS is an AI-assisted livestock health and condition grading system that provides explainable recommendations using non-identifiable images and measurable health attributes. It supports human graders and never replaces expert judgment.
 
 ---
 
@@ -11,20 +11,20 @@ This document provides a step-by-step script for live demonstrations and judge w
                                                                             │
    [8. Dashboard Updates] <── [7. Senior Review] <── [6. Disagreement] <────┴──> [5. Read Explanation]
             │
-            └──> [9. Offline Demo] ──> [10. Reconnect] ──> [11. Sync] ──> [12. Reports]
+            └──> [9. Offline Demo] ──> [10. Reconnect] ──> [11. Sync] ──> [12. Persistent Audit]
 ```
 
 ---
 
 ### Step 1: Open Application
 - **Action:** Open `http://localhost` (or deployed PWA URL) in browser.
-- **Talking Point:** *"Notice the clean, high-contrast civic interface designed specifically for outdoor field conditions with large tap targets and responsive mobile navigation."*
+- **Talking Point:** *"Notice the clean, high-contrast civic interface designed specifically for outdoor field conditions with large tap targets and responsive mobile navigation. Our core principle is that ELHGS supports human graders and never replaces expert judgment."*
 
 ---
 
 ### Step 2: Capture Livestock Image
-- **Action:** Navigate to **Grade**, tap the **Livestock Photograph** uploader, and upload a sample image.
-- **Talking Point:** *"Notice the 'EXIF Privacy Stripped' green badge. All photo metadata, worker location tags, and timestamps are stripped client-side on HTML5 canvas before storage, guaranteeing worker privacy."*
+- **Action:** Navigate to **Grade**, tap the **Livestock Photograph** uploader, and upload an image.
+- **Talking Point:** *"Notice the 'EXIF Privacy Stripped' green badge. All photo metadata, worker location tags, and timestamps are stripped client-side on HTML5 canvas and re-verified by server-side ingestion before storage, guaranteeing worker privacy."*
 
 ---
 
@@ -32,9 +32,9 @@ This document provides a step-by-step script for live demonstrations and judge w
 - **Action:** Input representative physical observations:
   - **Body Condition Score (BCS):** `3.0`
   - **Coat Quality:** `Smooth`
-  - **Eye Condition:** `Clear & Bright`
+  - **Eye Condition:** `Clear`
   - **Wound / Injuries:** `None`
-  - **Mobility:** `Normal Gait`
+  - **Mobility:** `Normal`
   - **Appetite:** `Good`
   - *(Optional)* **Human Manual Grade:** Select `Grade B` (to demonstrate disagreement detection).
 
@@ -55,42 +55,37 @@ This document provides a step-by-step script for live demonstrations and judge w
 
 ### Step 6: Create & Flag Disagreement
 - **Action:** Observe the **Human Senior Review Recommended** alert banner (triggered because human entered `B` while system calculated `A`).
-- **Talking Point:** *"Because the human field grader manually entered Grade B while the system calculated Grade A, ELHGS detects an inter-rater disagreement."*
+- **Talking Point:** *"Because the human field grader manually entered Grade B while the system calculated Grade A, ELHGS detects an inter-rater disagreement and queues it for senior review."*
 
 ---
 
-### Step 7: Senior Review Queue
-- **Action:** Navigate to **Disagreements** (or **History**).
-- **Talking Point:** *"Crucial Ethical Guardrail: The AI system NEVER overwrites human grader authority. Instead, the disagreement is flagged for Senior Veterinary Review without altering the human record."*
+### Step 7: Persistent Senior Review Queue & Adjudication
+- **Action:** Navigate to **Disagreement Review**.
+- **Talking Point:** *"Crucial Ethical Guardrail: The AI system NEVER overwrites human grader authority. In Phase 11, disagreements are persistently stored in PostgreSQL (`disagreement_reviews`). Original human and system grades are permanently immutable. Senior Reviewers can adjudicate records with clinical rationale and confirm final grades."*
 
 ---
 
-### Step 8: Dashboard Updates
+### Step 8: Dynamic Live Dashboard
 - **Action:** Navigate to **Metrics Dashboard**.
-- **Talking Point:** *"Real-time analytics instantly update showing total gradings, overall agreement rate, average confidence scores, and pending review counts."*
+- **Talking Point:** *"Real-time analytics instantly update with live database counts: total gradings, agreement rates, pending reviews, resolved reviews, and grade distributions. Notice the explicit 'Pending Real-World Validation' badge for real data, avoiding any fabricated claims."*
 
 ---
 
 ### Step 9: Offline Demonstration
-- **Action:** Open Chrome Developer Tools -> **Network** tab -> Check **Offline** (or disconnect Wi-Fi).
-- **Action:** Return to **Grade**, enter new attributes (e.g. BCS `2.0`), and tap **Calculate Explainable Grade**.
+- **Action:** Open Chrome Developer Tools -> **Network** tab -> Check **Offline**.
+- **Action:** Return to **Grade**, enter new attributes, and tap **Calculate Explainable Grade**.
 - **Result:** **Offline Banner** appears: *"You are working offline. Grading decisions will save locally to IndexedDB."*
-- **Talking Point:** *"Field officers operating on remote farms without cellular service can continue grading animals with zero interruption. Data is saved locally using native IndexedDB (`ELHGS_Offline_DB`)."*
+- **Talking Point:** *"Field officers operating on remote farms without cellular service can continue grading animals with zero interruption using native IndexedDB (`ELHGS_Offline_DB`)."*
 
 ---
 
-### Step 10: Reconnect
-- **Action:** Uncheck **Offline** in Developer Tools (re-enable Wi-Fi).
+### Step 10: Reconnect & Background Synchronization
+- **Action:** Uncheck **Offline** in Developer Tools (re-enable network).
 - **Result:** The **ConnectionIndicator** automatically turns green ("Online").
+- **Talking Point:** *"Our two-stage low-bandwidth sync engine automatically synchronizes queued records with deduplication."*
 
 ---
 
-### Step 11: Background Synchronization
-- **Action:** Observe the **SyncStatusBadge** or tap **Sync Now** on the **Pending Queue Card**.
-- **Talking Point:** *"Our two-stage low-bandwidth sync engine automatically fires, sending attribute JSON first to the `POST /api/v1/sync` FastAPI batch endpoint."*
-
----
-
-### Step 12: Automated Reports Inspection
-- **Action:** Open `reports/` folder in the codebase or view **Metrics Dashboard** experiment cards.
-- **Talking Point:** *"Finally, our automated evaluation suite generates presentation-ready Markdown reports in `reports/` proving a 71.8% reduction in inter-grader disputes and 67.3% evaluation time savings during controlled trials."*
+### Step 11: Real Validation & Claim Transparency
+- **Action:** Open the **Real-World Dataset** section on the Metrics Dashboard or view `reports/`.
+- **Talking Point:** *"Finally, we maintain strict claim transparency: our simulated trial baseline demonstrated 71.8% dispute reduction under in-silico assumptions, while genuine field dispute reduction is ethically reported as 'Pending real-world validation' until partner field trials conclude."*

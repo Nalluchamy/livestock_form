@@ -93,6 +93,9 @@ class APIGradingService:
             "reasons": grading_result.reasons,
             "missing_attributes": grading_result.missing_attributes,
             "review_required": grading_result.review_required or (review_status == "pending"),
+            "urgent_escalation": grading_result.urgent_escalation,
+            "escalation_reasons": grading_result.escalation_reasons,
+            "clinical_disclaimer": grading_result.clinical_disclaimer,
             "sample_id": str(sample_id),
             "grader_id": str(grader_id),
             "generated_demo_entities": generated_demo

@@ -4,7 +4,7 @@
 > **Ethics Banner:** This tool supports grading decisions. It does not replace expert judgment and must never be used to monitor or penalize workers.
 
 ## Responsible AI
-The Explainable Livestock Health Grading System (ELHGS) is committed to responsible AI practices. We prioritize transparency, fairness, and human oversight. 
+ELHGS is an AI-assisted livestock health and condition grading system that provides explainable recommendations using non-identifiable images and measurable health attributes. It supports human graders and never replaces expert judgment. We prioritize transparency, fairness, and human oversight. 
 
 ## Human-in-the-Loop
 This system is an **assistive technology**, not an autonomous decision-maker. 
