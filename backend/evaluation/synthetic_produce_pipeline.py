@@ -21,6 +21,24 @@ from backend.repositories.experiment_repository import ExperimentRepository
 SYNTHETIC_DIR = os.path.join("dataset", "produce", "synthetic")
 MANIFEST_PATH = os.path.join(SYNTHETIC_DIR, "generation_manifest.json")
 QUALITY_REPORT_PATH = os.path.join(SYNTHETIC_DIR, "quality_report.json")
+BENCHMARK_RESULTS_PATH = os.path.join(SYNTHETIC_DIR, "benchmark_results.json")
+
+
+def get_synthetic_benchmark_results() -> Dict[str, Any]:
+    """
+    Returns verified benchmark results calculated across physical synthetic images.
+    Strict non-fabrication: reports actual results from benchmark_results.json.
+    """
+    if not os.path.exists(BENCHMARK_RESULTS_PATH):
+        return {
+            "status": "NOT_YET_RUN",
+            "message": "Synthetic benchmark results not yet computed.",
+            "total_images_evaluated": 0,
+            "metrics": {"accuracy_pct": 0.0}
+        }
+    with open(BENCHMARK_RESULTS_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
 
 
 def get_synthetic_dataset_summary() -> Dict[str, Any]:

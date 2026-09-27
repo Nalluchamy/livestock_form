@@ -173,13 +173,22 @@ def test_synthetic_api_endpoints(client, db_session):
     assert data["target_total_samples"] >= 300
     assert "qc_summary" in data
 
-    # Benchmark endpoint
+    # Benchmark execution endpoint
     payload = {"experiment_name": "API_TEST_SYN_BENCHMARK"}
     resp = client.post("/api/v1/produce/synthetic-benchmark", json=payload)
     assert resp.status_code == 200
     b_data = resp.json()["data"]
     assert b_data["is_synthetic"] is True
     assert b_data["evaluation_type"] == "synthetic_produce_development"
+
+    # Benchmark results retrieval endpoint
+    resp = client.get("/api/v1/produce/synthetic-benchmark-results")
+    assert resp.status_code == 200
+    res_data = resp.json()["data"]
+    assert res_data["total_images_evaluated"] >= 6
+    assert "optical_quality_gate" in res_data
+    assert "confusion_matrix" in res_data
+    assert "metrics" in res_data
 
 
 def test_quality_report_json_consistency():

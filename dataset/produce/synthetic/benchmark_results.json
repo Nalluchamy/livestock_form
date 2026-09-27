@@ -1,0 +1,187 @@
+{
+  "benchmark_name": "EQGS Synthetic Produce Prototype Benchmark",
+  "timestamp": "2026-09-27T01:25:42.763069+00:00",
+  "evaluation_type": "synthetic_produce_development",
+  "is_synthetic": true,
+  "dataset_version": "v1.0-synthetic",
+  "total_images_evaluated": 6,
+  "optical_quality_gate": {
+    "passed_count": 5,
+    "rejected_count": 1,
+    "rejection_rate_pct": 16.7
+  },
+  "metrics": {
+    "commercial_samples_count": 4,
+    "commercial_correct_count": 1,
+    "accuracy_pct": 25.0,
+    "per_class": {
+      "Grade_A": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 2,
+        "precision_pct": 0.0,
+        "recall_pct": 0.0,
+        "f1_score": 0.0
+      },
+      "Grade_B": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1,
+        "precision_pct": 0.0,
+        "recall_pct": 0.0,
+        "f1_score": 0.0
+      },
+      "Grade_C": {
+        "true_positives": 1,
+        "false_positives": 4,
+        "false_negatives": 0,
+        "precision_pct": 20.0,
+        "recall_pct": 100.0,
+        "f1_score": 33.3
+      }
+    }
+  },
+  "confusion_matrix": {
+    "A": {
+      "A": 0,
+      "B": 0,
+      "C": 2,
+      "REJECTED_IMAGE": 0
+    },
+    "B": {
+      "A": 0,
+      "B": 0,
+      "C": 1,
+      "REJECTED_IMAGE": 0
+    },
+    "C": {
+      "A": 0,
+      "B": 0,
+      "C": 1,
+      "REJECTED_IMAGE": 0
+    },
+    "EDGE_CASE": {
+      "A": 0,
+      "B": 0,
+      "C": 1,
+      "REJECTED_IMAGE": 1
+    }
+  },
+  "sample_evaluations": [
+    {
+      "sample_id": "syn_tom_a_001",
+      "filename": "syn_tom_a_001.jpg",
+      "category": "grade_a",
+      "expected_grade": "A",
+      "derived_grade": "C",
+      "confidence": 90.0,
+      "quality_passed": true,
+      "review_required": false,
+      "triggered_rules": [
+        "RULE_GRADE_C_DOWNGRADE"
+      ],
+      "extracted_features": {
+        "surface_defect_pct": 24.4,
+        "ripeness_stage": "TURNING",
+        "laplacian_var": 126.0,
+        "illumination_mean": 151.1
+      }
+    },
+    {
+      "sample_id": "syn_tom_a_002",
+      "filename": "syn_tom_a_002.jpg",
+      "category": "grade_a",
+      "expected_grade": "A",
+      "derived_grade": "C",
+      "confidence": 90.0,
+      "quality_passed": true,
+      "review_required": false,
+      "triggered_rules": [
+        "RULE_GRADE_C_DOWNGRADE"
+      ],
+      "extracted_features": {
+        "surface_defect_pct": 23.8,
+        "ripeness_stage": "PINK",
+        "laplacian_var": 662.5,
+        "illumination_mean": 130.6
+      }
+    },
+    {
+      "sample_id": "syn_tom_b_001",
+      "filename": "syn_tom_b_001.jpg",
+      "category": "grade_b",
+      "expected_grade": "B",
+      "derived_grade": "C",
+      "confidence": 90.0,
+      "quality_passed": true,
+      "review_required": false,
+      "triggered_rules": [
+        "RULE_GRADE_C_DOWNGRADE"
+      ],
+      "extracted_features": {
+        "surface_defect_pct": 31.9,
+        "ripeness_stage": "PINK",
+        "laplacian_var": 458.6,
+        "illumination_mean": 100.4
+      }
+    },
+    {
+      "sample_id": "syn_tom_c_001",
+      "filename": "syn_tom_c_001.jpg",
+      "category": "grade_c",
+      "expected_grade": "C",
+      "derived_grade": "C",
+      "confidence": 90.0,
+      "quality_passed": true,
+      "review_required": false,
+      "triggered_rules": [
+        "RULE_GRADE_C_DOWNGRADE"
+      ],
+      "extracted_features": {
+        "surface_defect_pct": 26.2,
+        "ripeness_stage": "GREEN",
+        "laplacian_var": 580.7,
+        "illumination_mean": 84.0
+      }
+    },
+    {
+      "sample_id": "syn_edge_001_blur",
+      "filename": "syn_edge_001_blur.jpg",
+      "category": "edge_cases",
+      "expected_grade": "EDGE_CASE",
+      "derived_grade": "REJECTED_IMAGE",
+      "confidence": 0.0,
+      "quality_passed": false,
+      "review_required": true,
+      "triggered_rules": [
+        "RULE_IMAGE_QUALITY_REJECTION"
+      ],
+      "extracted_features": {
+        "surface_defect_pct": 27.9,
+        "ripeness_stage": "TURNING",
+        "laplacian_var": 101.5,
+        "illumination_mean": 28.3
+      }
+    },
+    {
+      "sample_id": "syn_edge_002_occlusion",
+      "filename": "syn_edge_002_occlusion.jpg",
+      "category": "edge_cases",
+      "expected_grade": "EDGE_CASE",
+      "derived_grade": "C",
+      "confidence": 90.0,
+      "quality_passed": true,
+      "review_required": false,
+      "triggered_rules": [
+        "RULE_GRADE_C_DOWNGRADE"
+      ],
+      "extracted_features": {
+        "surface_defect_pct": 33.5,
+        "ripeness_stage": "PINK",
+        "laplacian_var": 593.1,
+        "illumination_mean": 98.9
+      }
+    }
+  ],
+  "non_fabrication_declaration": "Benchmark derived exclusively from physical synthetic images in dataset/produce/synthetic/. Excludes ungenerated queued prompts and genuine field images. This prototype has not been validated on genuine field photographs."
+}

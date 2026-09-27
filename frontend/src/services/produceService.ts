@@ -229,3 +229,76 @@ export const getProduceFailureCases = async (): Promise<ProduceFailureCase[]> =>
   return resp.data.data.failure_cases;
 };
 
+export interface SyntheticDatasetStatus {
+  status: string;
+  dataset_name?: string;
+  version?: string;
+  detected_backend?: string;
+  verified_images_count: number;
+  target_total_samples: number;
+  missing_quota_samples_count: number;
+  qc_summary?: {
+    qc_pass_count: number;
+    qc_review_flagged_count: number;
+    qc_fail_count: number;
+    duplicates_detected: number;
+  };
+  isolation_guarantee: string;
+}
+
+export interface SyntheticBenchmarkResults {
+  benchmark_name: string;
+  timestamp: string;
+  evaluation_type: string;
+  is_synthetic: boolean;
+  dataset_version: string;
+  total_images_evaluated: number;
+  optical_quality_gate: {
+    passed_count: number;
+    rejected_count: number;
+    rejection_rate_pct: number;
+  };
+  metrics: {
+    commercial_samples_count: number;
+    commercial_correct_count: number;
+    accuracy_pct: number;
+    per_class: Record<string, {
+      true_positives: number;
+      false_positives: number;
+      false_negatives: number;
+      precision_pct: number;
+      recall_pct: number;
+      f1_score: number;
+    }>;
+  };
+  confusion_matrix: Record<string, Record<string, number>>;
+  sample_evaluations: Array<{
+    sample_id: string;
+    filename: string;
+    category: string;
+    expected_grade: string;
+    derived_grade: string;
+    confidence: number;
+    quality_passed: boolean;
+    review_required: boolean;
+    triggered_rules: string[];
+  }>;
+  non_fabrication_declaration: string;
+}
+
+export const getSyntheticDatasetStatus = async (): Promise<SyntheticDatasetStatus> => {
+  const resp = await apiClient.get('/produce/synthetic-status');
+  return resp.data.data;
+};
+
+export const getSyntheticBenchmarkResults = async (): Promise<SyntheticBenchmarkResults> => {
+  const resp = await apiClient.get('/produce/synthetic-benchmark-results');
+  return resp.data.data;
+};
+
+export const runSyntheticBenchmark = async (payload?: { experiment_name?: string }): Promise<any> => {
+  const resp = await apiClient.post('/produce/synthetic-benchmark', payload || {});
+  return resp.data.data;
+};
+
+

@@ -161,6 +161,16 @@ def run_synthetic_benchmark(
     return success_response(message="Synthetic benchmark experiment executed.", data=result)
 
 
+@router.get("/synthetic-benchmark-results", response_model=APIResponse[dict])
+def get_synthetic_benchmark_results():
+    """
+    Returns verified benchmark results calculated across physical synthetic images,
+    including confusion matrix, precision/recall/F1, and quality gate rejections.
+    """
+    results = syn_pipe.get_synthetic_benchmark_results()
+    return success_response(message="Synthetic benchmark results retrieved.", data=results)
+
+
 @router.get("/real/status", response_model=APIResponse[dict])
 def get_real_produce_status(db: Session = Depends(get_db)):
     """
